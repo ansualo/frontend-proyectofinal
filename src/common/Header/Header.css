@@ -1,0 +1,15 @@
+.headerDesign{
+    width: 100vw;
+    background-color: #e4e3b8;
+}
+
+.logo{
+    height: 8vh;
+    width: auto;
+}
+
+.headerLinks{
+    color: #61764B;
+    font-size: large;
+    font-weight: bold;
+}
