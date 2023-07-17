@@ -6,8 +6,9 @@ export const InputText = ({ label, name, type = 'text', placeholder, maxLength =
 
     return (
         <Form.Group>
-            <Form.Label >{label}</Form.Label>
+            <Form.Label className="labelDesign" >{label}</Form.Label>
             <Form.Control
+                className="inputDesign"
                 name={name}
                 type={type}
                 placeholder={placeholder}

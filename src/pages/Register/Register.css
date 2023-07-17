@@ -1,8 +1,47 @@
 .registerDesign{
-    height: 100vh;
+    min-height: 80vh;
     width: 100vw;
     display: flex;
     align-items: center;
+    background-color: #e4e3b8;
+    font-weight: bold;
+}
+
+.registerRow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    background-color: antiquewhite;
+}
+
+.welcomeText{
+    font-size: 10vh;
+    text-align: center;
+}
+
+.secondaryText{
+    margin: 2rem;
+    margin-top: 0;
+    text-align: center;
+}
+
+.registerImage{
+    display: none;
+}
+
+@media (min-width: 768px) {
+
+    .registerRow{
+        flex-direction: row;
+        margin-right: 5em;
+    }
+
+    .registerImage{
+        display:block;
+        width: 45vw;
+        height: 90vh;
+        margin-top: 1em;
+        background-repeat: no-repeat;
+        background-position: contain;
+    }
 }

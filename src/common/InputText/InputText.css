@@ -1,0 +1,11 @@
+.labelDesign{
+    margin-left: 1em;
+    margin-bottom: 0.2em;
+}
+
+.inputDesign{
+    border-radius: 2em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
