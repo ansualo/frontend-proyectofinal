@@ -1,5 +1,5 @@
 .registerDesign{
-    min-height: 80vh;
+    min-height: 88vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -39,7 +39,7 @@
     .registerImage{
         display:block;
         width: 45vw;
-        height: 90vh;
+        height: 86vh;
         margin-top: 1em;
         background-repeat: no-repeat;
         background-position: contain;

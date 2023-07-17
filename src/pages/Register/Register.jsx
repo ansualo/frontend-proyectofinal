@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import './Register.css';
 import { InputText } from "../../common/InputText/InputText";
 import { Col, Container, Row } from "react-bootstrap";
 
 import register from '../../assets/images/register.jpg'
+import { CustomButton } from "../../common/CustomButton/CustonButton";
 
 export const Register = () => {
 
@@ -17,7 +18,7 @@ export const Register = () => {
                 />
             </div>
             <Container>
-                <Row className="registerRow">
+                <Row className="registerRow mt-4 mt-md-0">
                     <Col md={12} className="welcomeText">
                         Welcome!
                     </Col>
@@ -71,6 +72,13 @@ export const Register = () => {
                             name={"password"}
                             placeholder={"********"}
                         ></InputText>
+                    </Col>
+                </Row>
+                <Row className="my-4 my-md-5 registerRow">
+                    <Col xs={8} md={8}>
+                        <CustomButton
+                            name={"Register"}
+                        ></CustomButton>
                     </Col>
                 </Row>
             </Container>
