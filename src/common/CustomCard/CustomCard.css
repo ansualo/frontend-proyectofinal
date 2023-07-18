@@ -1,0 +1,18 @@
+.cardDesign{
+    width: 50vw;
+    height: 55vh;
+    text-align: center;
+    margin: 0.5em;
+    border:white;
+}
+
+@media only screen and (min-width: 1025px) {
+
+    .cardDesign{
+        width: 15vw;
+        height: 57vh;
+        text-align: center;
+        margin: 2em;
+    }
+
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import './Home.css'
 import { InputText } from "../../common/InputText/InputText";
+import { CustomCard } from "../../common/CustomCard/CustomCard";
 
 
 export const Home = () => {
@@ -19,6 +20,10 @@ export const Home = () => {
                     placeholder="Enter plant name">
                 </InputText>
             </div>
+            <div className="homeCards">
+                <CustomCard></CustomCard>
+                <CustomCard></CustomCard>
         </div>
+        </div >
     )
 }

@@ -21,7 +21,6 @@
 .homePhoto{
     height: 70vh;
     width: 75vw;
-    margin-bottom: 3.5em;
     margin-right: -12vw;
     border-radius: 3em;
     background-image: url('../../assets/images/home.jpg');
@@ -33,7 +32,7 @@
 .homeSearch{
     height: 40vh;
     width: 90vw;
-    margin-top: 10em;
+    margin-top: 8em;
     margin-bottom: 6em;
     display: flex;
     flex-direction: column;
@@ -48,6 +47,13 @@
     text-align: center;
 }
 
+.homeCards{
+    min-height: 50vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media only screen and (min-width: 1025px) {
 
@@ -58,7 +64,10 @@
         height: 70vh;
         width: 40vw;
         margin-right: -10vw;
-        margin-top: 3em;
+    }
+    .homeSearch{
+        margin-top: 10em;
+        margin-bottom: 6em;
     }
     .searchLetters{
         font-size: 5em;
