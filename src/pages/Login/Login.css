@@ -1,0 +1,45 @@
+.loginDesign{
+    min-height: 88vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e4e3b8;
+    font-weight: bold;
+    color: white;
+}
+
+.loginContainer{
+    width: 90vw;
+    height: 75vh;
+    border-radius: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 2em;
+    background-image: url('../../assets/images/login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.loginRow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.helloText{
+    font-size: 10vh;
+    text-align: center;
+    color: black;
+    margin-bottom: 0.5em;
+}
+
+@media (min-width: 1025px) {
+
+    .loginContainer{
+        width: 35vw;
+        height: 75vh;
+    }
+}
