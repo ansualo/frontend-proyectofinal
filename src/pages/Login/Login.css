@@ -29,6 +29,11 @@
     justify-content: center;
 }
 
+.inputBackground{
+    background-color: rgb(107, 141, 61);
+    border-radius: 3em;
+}
+
 .helloText{
     font-size: 10vh;
     text-align: center;

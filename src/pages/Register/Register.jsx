@@ -81,6 +81,7 @@ export const Register = () => {
                         <InputText
                             label={"Email"}
                             name={"email"}
+                            type={"email"}
                             placeholder={"example@example.com"}
                             state={setUserInfo}
                             errorState={setInputError}
@@ -91,6 +92,7 @@ export const Register = () => {
                         <InputText
                             label={"Password"}
                             name={"password"}
+                            type={"password"}
                             placeholder={"********"}
                             state={setUserInfo}
                             errorState={setInputError}

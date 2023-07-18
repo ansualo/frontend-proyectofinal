@@ -6,3 +6,8 @@ export const registerUser = async (userInfo) => {
     let res = await axios.post(`${URL}/register`, userInfo)
     return res.data
 }
+
+export const loginUser = async (userInfo) => {
+    let res = await axios.post(`${URL}/login`, userInfo)
+    return res.data
+}

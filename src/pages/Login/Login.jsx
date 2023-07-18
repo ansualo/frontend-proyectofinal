@@ -3,12 +3,19 @@ import './Login.css'
 import { Col, Container, Row } from "react-bootstrap";
 import { CustomButton } from "../../common/CustomButton/CustonButton";
 import { InputText } from "../../common/InputText/InputText";
+import { loginUser } from "../../services/apiCalls";
 
 export const Login = () => {
 
     const [userInfo, setUserInfo] = useState({});
     const [inputError, setInputError] = useState({});
 
+    const login = () => {
+        e.preventDefault()
+        loginUser(userInfo)
+            .then((res)=>console.log(res))
+            .catch((error)=>console.log(error))
+    }
 
     return (
         <div className="loginDesign">
@@ -19,20 +26,22 @@ export const Login = () => {
                     </Col>
                 </Row>
                 <Row className="loginRow">
-                    <Col xs={10} md={9}>
+                    <Col xs={10} md={9} className="inputBackground">
                         <InputText
                             label={"Email"}
                             name={"email"}
+                            type={"email"}
                             placeholder={"example@example.com"}
                             state={setUserInfo}
                             errorState={setInputError}
                         ></InputText>
                         <div className="errorInput">{inputError.emailError}</div>
                     </Col>
-                    <Col xs={10} md={9} className="my-3">
+                    <Col xs={10} md={9} className="my-3 inputBackground">
                         <InputText
                             label={"Password"}
                             name={"password"}
+                            type={"password"}
                             placeholder={"********"}
                             state={setUserInfo}
                             errorState={setInputError}
@@ -44,7 +53,7 @@ export const Login = () => {
                     <Col xs={8} md={6} className="my-3">
                         <CustomButton
                             name={"Login"}
-                            onClick={() => register()}
+                            onClick={() => login()}
                         ></CustomButton>
                     </Col>
                 </Row>
