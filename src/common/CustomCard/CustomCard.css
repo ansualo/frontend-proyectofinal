@@ -1,9 +1,15 @@
 .cardDesign{
-    width: 40vw;
-    height: 50vh;
+    width: 45vw;
+    height: 58vh;
     text-align: center;
     margin: 0.5em;
     border:white;
+}
+
+.plantIcon{
+    width: 8vw;
+    height: 5vh;
+    margin-right: 0.2em;
 }
 
 @media only screen and (min-width: 1025px) {
@@ -13,6 +19,11 @@
         height: 55vh;
         text-align: center;
         margin: 2em;
+    }
+    .plantIcon{
+        width: 2vw;
+        height: 4vh;
+        margin-right: 0.4em;
     }
 
 }
