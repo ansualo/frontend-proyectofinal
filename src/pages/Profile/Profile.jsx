@@ -7,6 +7,7 @@ import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { InputText } from "../../common/InputText/InputText";
 import { deleteProfile, getProfile, updateProfile } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
+import { CustomModal } from "../../common/CustomModal/CUstomModal";
 
 export const Profile = () => {
 
@@ -23,7 +24,7 @@ export const Profile = () => {
             .catch((error) => console.log(error))
     }
 
-    const handleDelete = (token) => {
+    const handleDelete = () => {
         deleteProfile(token)
         .then(navigate('/'))
         .catch((error) => console.log(error))
@@ -115,7 +116,8 @@ export const Profile = () => {
                                     <CustomButton name="Update profile" onClick={() => { setEditing(true) }}></CustomButton >
                                 </Col>
                                 <Col xs={8} md={4} className="mt-3 mt-md-5">
-                                    <div className="buttonDesign redBackground" onClick={() => { handleDelete(token) }}>Delete profile</div>
+                                    <CustomModal
+                                        handleDelete={handleDelete} />
                                 </Col>
                             </>
                         )

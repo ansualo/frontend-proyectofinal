@@ -43,6 +43,8 @@
 
 .redBackground{
     background-color: crimson;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
 }
 
 @media (min-width: 1025px) {
