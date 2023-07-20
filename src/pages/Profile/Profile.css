@@ -6,7 +6,6 @@
     justify-content: center;
 }
 
-
 .userProfile{
     width:90vw;
     height: auto;
@@ -29,16 +28,16 @@
 }
 
 .profileLabel{
-    margin-bottom: 0.1em;
-    font-weight: bold;
-    padding: 0.1em;
+    margin-left: 1em;
+    margin-bottom: 0.2em;
+    font-size: 1.2em;
 }
 
 .profileData{
     background-color: #ffffff7e;
     margin-bottom: 0.5em;
     text-indent: 1em;
-    padding: 0.3em;
+    padding: 0.4em;
     border-radius: 0.5em;
 }
 

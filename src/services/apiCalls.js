@@ -40,4 +40,27 @@ export const getPlantBySunlight = async (selectedSunlight) => {
 }
 
 
+//PROFILE
+
+export const getProfile = async (token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.get(`${URL}/profile`, config)
+    return res.data
+}
+
+export const updateProfile = async (newData, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.put(`${URL}/profile`, newData, config)
+    return res.data
+}
+
+
 
