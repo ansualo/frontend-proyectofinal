@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import './Home.css'
 import { InputText } from "../../common/InputText/InputText";
 import { CustomCard } from "../../common/CustomCard/CustomCard";
-import { getAllPlants, getPlantByWatering, getPlantBySunlight } from "../../services/apiCalls";
+import { getAllPlants, getPlantByWatering, getPlantBySunlight, getPlantByName } from "../../services/apiCalls";
 import Form from 'react-bootstrap/Form';
 
 
 export const Home = () => {
 
     const [allPlants, setAllPlants] = useState([]);
+    const [searchedName, setSearchedName] = useState("");
+    const [plantsByName, setPlantsByName] = useState([]);
     const [selectedWatering, setSelectedWatering] = useState("");
-    const [plantsByWatering, setPlantsByWatering] = useState([])
+    const [plantsByWatering, setPlantsByWatering] = useState([]);
     const [selectedSunlight, setSelectedSunlight] = useState("");
-    const [plantsBySunlight, setPlantsBySunlight] = useState([])
+    const [plantsBySunlight, setPlantsBySunlight] = useState([]);
 
     useEffect(() => {
         if (allPlants.length === 0) {
@@ -25,14 +27,29 @@ export const Home = () => {
         }
     }, [])
 
+    useEffect(() => {
+        plantsBySunlight.length = 0
+        plantsByWatering.length = 0
+        const bring = setTimeout(() => {
+            getPlantByName(searchedName)
+                .then((res) => setPlantsByName(res.data))
+                .catch((error) => console.log(error))
+        }, 500)
+
+        return () => clearTimeout(bring);
+    }, [searchedName]);
+
+
     const handleWatering = (e) => {
         setSelectedWatering(e.target.value);
     };
 
     useEffect(() => {
-        console.log(selectedWatering);
+        plantsByName.length = 0
+        plantsBySunlight.length = 0
         getPlantByWatering(selectedWatering)
             .then((res) => setPlantsByWatering(res.data))
+            .catch((error) => console.log(error))
     }, [selectedWatering]);
 
     const handleSunlight = (e) => {
@@ -40,9 +57,11 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        console.log(selectedSunlight);
+        plantsByName.length = 0
+        plantsByWatering.length = 0
         getPlantBySunlight(selectedSunlight)
             .then((res) => setPlantsBySunlight(res.data))
+            .catch((error) => console.log(error))
     }, [selectedSunlight]);
 
 
@@ -54,18 +73,21 @@ export const Home = () => {
             <div className="homeSearch">
                 <h1 className="searchLetters">Search for your favourite plant</h1>
                 <InputText
-                    name="plant"
-                    placeholder="Enter plant name">
+                    name={"name"}
+                    placeholder={"Enter plant name"}
+                    state={setSearchedName}
+                    errorState={() => { }}
+                >
                 </InputText>
             </div>
-            <div className="plantsMenu">
-                <div className="eachMenu">
-                    <Form className="mb-3">
+            <div>
+                <Form className="mb-3 plantsMenu">
+                    <div className="eachMenu">
                         WATERING
                         <Form.Check
                             label="Frequent"
                             value="Frequent"
-                            name="watering"
+                            name="options"
                             type="radio"
                             checked={selectedWatering === 'Frequent'}
                             onChange={handleWatering}
@@ -73,7 +95,7 @@ export const Home = () => {
                         <Form.Check
                             label="Average"
                             value="Average"
-                            name="watering"
+                            name="options"
                             type="radio"
                             checked={selectedWatering === 'Average'}
                             onChange={handleWatering}
@@ -81,7 +103,7 @@ export const Home = () => {
                         <Form.Check
                             label="Low"
                             value="Low"
-                            name="watering"
+                            name="options"
                             type="radio"
                             checked={selectedWatering === 'Low'}
                             onChange={handleWatering}
@@ -89,20 +111,18 @@ export const Home = () => {
                         <Form.Check
                             label="Minimum"
                             value="Minimum"
-                            name="watering"
+                            name="options"
                             type="radio"
                             checked={selectedWatering === 'Minimum'}
                             onChange={handleWatering}
                         />
-                    </Form>
-                </div>
-                <div className="eachMenu">
-                    <Form className="mb-3">
+                    </div>
+                    <div className="eachMenu">
                         SUNLIGHT
                         <Form.Check
                             label="Full Sun"
                             value="Full Sun"
-                            name="sunlight"
+                            name="options"
                             type="radio"
                             checked={selectedSunlight === 'Full Sun'}
                             onChange={handleSunlight}
@@ -110,7 +130,7 @@ export const Home = () => {
                         <Form.Check
                             label="Full Sun/Part Sun"
                             value="Full Sun/Part Sun"
-                            name="sunlight"
+                            name="options"
                             type="radio"
                             checked={selectedSunlight === 'Full Sun/Part Sun'}
                             onChange={handleSunlight}
@@ -118,7 +138,7 @@ export const Home = () => {
                         <Form.Check
                             label="Full sun/Part Shade"
                             value="Full sun/Part Shade"
-                            name="sunlight"
+                            name="options"
                             type="radio"
                             checked={selectedSunlight === 'Full sun/Part Shade'}
                             onChange={handleSunlight}
@@ -126,7 +146,7 @@ export const Home = () => {
                         <Form.Check
                             label="Part Sun/Part Shade"
                             value="Part Sun/Part Shade"
-                            name="sunlight"
+                            name="options"
                             type="radio"
                             checked={selectedSunlight === 'Part Sun/Part Shade'}
                             onChange={handleSunlight}
@@ -134,18 +154,18 @@ export const Home = () => {
                         <Form.Check
                             label="Part Shade/Full Shade"
                             value="Part Shade/Full Shade"
-                            name="sunlight"
+                            name="options"
                             type="radio"
                             checked={selectedSunlight === 'Part Shade/Full Shade'}
                             onChange={handleSunlight}
                         />
-                    </Form>
-                </div>
+                    </div>
+                </Form>
             </div>
             <div className="homeCards">
 
-                {plantsByWatering.length > 0
-                    ? (plantsByWatering.map((plant) => {
+                {plantsByName.length > 0
+                    ? (plantsByName.map((plant) => {
                         return (
                             <CustomCard
                                 key={plant.id}
@@ -155,37 +175,48 @@ export const Home = () => {
                             ></CustomCard>
                         )
                     }))
-                    : (
-                        plantsBySunlight.length > 0
-
-                            ? (
-                                (plantsBySunlight.map((plant) => {
-                                    return (
-                                        <CustomCard
-                                            key={plant.id}
-                                            common_name={plant.common_name}
-                                            sunlight={plant.sunlight}
-                                            watering={plant.watering}
-                                        ></CustomCard>
-                                    )
-                                }))
+                    : (plantsByWatering.length > 0
+                        ? (plantsByWatering.map((plant) => {
+                            return (
+                                <CustomCard
+                                    key={plant.id}
+                                    common_name={plant.common_name}
+                                    sunlight={plant.sunlight}
+                                    watering={plant.watering}
+                                ></CustomCard>
                             )
-                            : (
-                                allPlants.length > 0
-                                    ? (
-                                        allPlants.map((plant) => {
-                                            return (
-                                                <CustomCard
-                                                    key={plant.id}
-                                                    common_name={plant.common_name}
-                                                    sunlight={plant.sunlight}
-                                                    watering={plant.watering}
-                                                ></CustomCard>
-                                            )
-                                        })
-                                    )
-                                    : (<div>Loading...</div>)
-                            ))
+                        }))
+                        : (
+                            plantsBySunlight.length > 0
+                                ? (
+                                    (plantsBySunlight.map((plant) => {
+                                        return (
+                                            <CustomCard
+                                                key={plant.id}
+                                                common_name={plant.common_name}
+                                                sunlight={plant.sunlight}
+                                                watering={plant.watering}
+                                            ></CustomCard>
+                                        )
+                                    }))
+                                )
+                                : (
+                                    allPlants.length > 0
+                                        ? (
+                                            allPlants.map((plant) => {
+                                                return (
+                                                    <CustomCard
+                                                        key={plant.id}
+                                                        common_name={plant.common_name}
+                                                        sunlight={plant.sunlight}
+                                                        watering={plant.watering}
+                                                    ></CustomCard>
+                                                )
+                                            })
+                                        )
+                                        : (<div>Loading...</div>)
+                                ))
+                    )
                 }
             </div>
         </div >

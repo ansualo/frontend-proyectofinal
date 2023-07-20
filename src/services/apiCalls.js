@@ -20,6 +20,11 @@ export const getAllPlants = async () => {
     return res.data
 }
 
+export const getPlantByName = async (searchedName) => {
+    let res = await axios.post(`${URL}/plants/name`, searchedName)
+    return res.data
+}
+
 export const getPlantByWatering = async (selectedWatering) => {
 
     const body = {"watering": selectedWatering}
