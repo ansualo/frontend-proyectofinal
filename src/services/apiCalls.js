@@ -62,5 +62,13 @@ export const updateProfile = async (newData, token) => {
     return res.data
 }
 
-
+export const deleteProfile = async (token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.delete(`${URL}/profile`, config)
+    return res.data
+}
 

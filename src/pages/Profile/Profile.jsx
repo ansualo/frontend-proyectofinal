@@ -5,7 +5,8 @@ import { usersData } from "../userSlice";
 import { Col, Container, Row } from "react-bootstrap";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { InputText } from "../../common/InputText/InputText";
-import { getProfile, updateProfile } from "../../services/apiCalls";
+import { deleteProfile, getProfile, updateProfile } from "../../services/apiCalls";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
 
@@ -14,17 +15,25 @@ export const Profile = () => {
     const [profileInfo, setProfileInfo] = useState({})
     const [editing, setEditing] = useState(false);
     const [newData, setNewData] = useState({});
+    const navigate = useNavigate()
 
-    const editHandler = (newData, token) => {
+    const handleEdit = (newData, token) => {
         updateProfile(newData, token)
-        .then((res)=>console.log(res))
-            .then(setEditing(false));
+            .then(setEditing(false))
+            .catch((error) => console.log(error))
+    }
+
+    const handleDelete = (token) => {
+        deleteProfile(token)
+        .then(navigate('/'))
+        .catch((error) => console.log(error))
     }
 
     useEffect(() => {
         if (!editing) {
             getProfile(token)
                 .then((res) => { setProfileInfo(res.data) })
+                .catch((error) => console.log(error))
         }
     }, [editing])
 
@@ -40,7 +49,7 @@ export const Profile = () => {
                                     name={"name"}
                                     placeholder={profileInfo.name}
                                     state={setNewData}
-                                    errorState={() => {}}
+                                    errorState={() => { }}
                                 />
                             </Col>
                             <Col sm={12} md={12}>
@@ -49,7 +58,7 @@ export const Profile = () => {
                                     name={"surname"}
                                     placeholder={profileInfo.surname}
                                     state={setNewData}
-                                    errorState={() => {}}
+                                    errorState={() => { }}
                                 />
                             </Col>
                             <Col sm={12} md={12}>
@@ -58,7 +67,7 @@ export const Profile = () => {
                                     name={"city"}
                                     placeholder={profileInfo.city}
                                     state={setNewData}
-                                    errorState={() => {}}
+                                    errorState={() => { }}
                                 />
                             </Col>
                             <Col sm={12} md={12}>
@@ -67,7 +76,7 @@ export const Profile = () => {
                                     name={"country"}
                                     placeholder={profileInfo.country}
                                     state={setNewData}
-                                    errorState={() => {}}
+                                    errorState={() => { }}
                                 />
                             </Col>
                         </Row>
@@ -97,13 +106,18 @@ export const Profile = () => {
                     {editing
                         ? (
                             <Col xs={8} md={6} className="mt-3 mt-md-5">
-                                <CustomButton name="Confirm" onClick={() => { editHandler(newData, token) }}></CustomButton >
+                                <CustomButton name="Confirm" onClick={() => { handleEdit(newData, token) }}></CustomButton >
                             </Col>
                         )
                         : (
-                            <Col xs={8} md={6} className="mt-3 mt-md-5">
-                                <CustomButton name="Update profile" onClick={() => { setEditing(true) }}></CustomButton >
-                            </Col>
+                            <>
+                                <Col xs={8} md={4} className="mt-3 mt-md-5">
+                                    <CustomButton name="Update profile" onClick={() => { setEditing(true) }}></CustomButton >
+                                </Col>
+                                <Col xs={8} md={4} className="mt-3 mt-md-5">
+                                    <div className="buttonDesign redBackground" onClick={() => { handleDelete(token) }}>Delete profile</div>
+                                </Col>
+                            </>
                         )
                     }
                 </Row>

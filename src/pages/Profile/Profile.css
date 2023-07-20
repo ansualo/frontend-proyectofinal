@@ -41,6 +41,10 @@
     border-radius: 0.5em;
 }
 
+.redBackground{
+    background-color: crimson;
+}
+
 @media (min-width: 1025px) {
 
     .userProfile{
