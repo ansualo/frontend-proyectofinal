@@ -3,7 +3,7 @@ import './Register.css';
 import { InputText } from "../../common/InputText/InputText";
 import { Col, Container, Row } from "react-bootstrap";
 import registerImage from '../../assets/images/register.jpg'
-import { CustomButton } from "../../common/CustomButton/CustonButton";
+import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { registerUser } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
 

@@ -4,6 +4,7 @@ import { InputText } from "../../common/InputText/InputText";
 import { CustomCard } from "../../common/CustomCard/CustomCard";
 import { getAllPlants, getPlantByWatering, getPlantBySunlight, getPlantByName } from "../../services/apiCalls";
 import Form from 'react-bootstrap/Form';
+import { CustomButton } from "../../common/CustomButton/CustomButton";
 
 
 export const Home = () => {
@@ -16,16 +17,24 @@ export const Home = () => {
     const [selectedSunlight, setSelectedSunlight] = useState("");
     const [plantsBySunlight, setPlantsBySunlight] = useState([]);
 
+
+    const fetchPlants = () => {
+        plantsByName.length = 0
+        plantsBySunlight.length = 0
+        plantsByWatering.length = 0
+        getAllPlants()
+            .then((res) => {
+                console.log(res.data)
+                setAllPlants(res.data);
+            })
+            .catch((error) => console.log(error));
+    };
+
     useEffect(() => {
         if (allPlants.length === 0) {
-            getAllPlants()
-                .then((res) => {
-                    console.log(res.data)
-                    setAllPlants(res.data)
-                })
-                .catch((error) => console.log(error))
+            fetchPlants();
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
         plantsBySunlight.length = 0
@@ -161,6 +170,10 @@ export const Home = () => {
                         />
                     </div>
                 </Form>
+                <CustomButton
+                    name={"All plants"}
+                    onClick={() => fetchPlants()}
+                ></CustomButton>
             </div>
             <div className="homeCards">
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './Login.css'
 import { Col, Container, Row } from "react-bootstrap";
-import { CustomButton } from "../../common/CustomButton/CustonButton";
+import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { InputText } from "../../common/InputText/InputText";
 import { loginUser } from "../../services/apiCalls";
 
