@@ -4,17 +4,25 @@ import { Col, Container, Row } from "react-bootstrap";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { InputText } from "../../common/InputText/InputText";
 import { loginUser } from "../../services/apiCalls";
+import { useDispatch } from "react-redux";
+import { loginReducer } from "../userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
 
     const [userInfo, setUserInfo] = useState({});
     const [inputError, setInputError] = useState({});
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const login = () => {
+    const login = (e) => {
         e.preventDefault()
         loginUser(userInfo)
-            .then((res)=>console.log(res))
-            .catch((error)=>console.log(error))
+            .then((res) => {
+                dispatch(loginReducer(res))
+                navigate('/profile')
+            })
+            .catch((error) => console.log(error))
     }
 
     return (
@@ -26,7 +34,7 @@ export const Login = () => {
                     </Col>
                 </Row>
                 <Row className="loginRow">
-                    <Col xs={10} md={9} className="inputBackground">
+                    <Col xs={10} md={9}>
                         <InputText
                             label={"Email"}
                             name={"email"}
@@ -37,7 +45,7 @@ export const Login = () => {
                         ></InputText>
                         <div className="errorInput">{inputError.emailError}</div>
                     </Col>
-                    <Col xs={10} md={9} className="my-3 inputBackground">
+                    <Col xs={10} md={9} className="my-3">
                         <InputText
                             label={"Password"}
                             name={"password"}
@@ -53,7 +61,7 @@ export const Login = () => {
                     <Col xs={8} md={6} className="my-3">
                         <CustomButton
                             name={"Login"}
-                            onClick={() => login()}
+                            onClick={(e) => login(e)}
                         ></CustomButton>
                     </Col>
                 </Row>
