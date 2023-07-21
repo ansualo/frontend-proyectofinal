@@ -1,0 +1,30 @@
+.myPlantsDesign{
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.myPlantsRow{
+    height: auto;
+    width: 50vw;
+    background-color: #8E5AFF;
+    border-radius: 3em;
+    padding: 0.5em;
+}
+
+.eachMyPlant{
+    height: 6vh;
+    background-color: white;
+    margin: 1em;
+    border-radius: 1em;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wateringcanIcon{
+    width: 2.5vw;
+    height: auto;
+}

@@ -2,8 +2,8 @@ import React from 'react';
 import './CustomCard.css';
 import Card from 'react-bootstrap/Card';
 import image from '../../assets/images/login.jpg'
-import waterIcon from '../../assets/images/water.png'
-import sunIcon from '../../assets/images/sun.png'
+import waterIcon from '../../assets/icons/water.png'
+import sunIcon from '../../assets/icons/sun.png'
 
 export const CustomCard = ({ common_name, sunlight, watering }) => {
 

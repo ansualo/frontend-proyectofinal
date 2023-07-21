@@ -4,6 +4,7 @@ import { Register } from "../Register/Register";
 import { Login } from "../Login/Login";
 import { Home } from "../Home/Home";
 import { Profile } from "../Profile/Profile";
+import { MyPlants } from "../MyPlants/MyPlants";
 
 export const Body = () => {
     return (
@@ -14,6 +15,7 @@ export const Body = () => {
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/profile' element={<Profile />} />
+                <Route path='/myplants' element={<MyPlants />} />
             </Routes>
         </>
     )

@@ -72,3 +72,16 @@ export const deleteProfile = async (token) => {
     return res.data
 }
 
+
+//MY PLANTS
+
+export const getMyPlants = async (token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.get(`${URL}/myplants`, config)
+    return res.data
+}
+
