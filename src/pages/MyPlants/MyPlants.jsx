@@ -28,7 +28,9 @@ export const MyPlants = () => {
     const fetchPlantsNotWaterToday = () => {
         getPlantsNotWaterToday(token)
             .then((res) => {
-                setNotWaterToday(res.data)
+                const sortedPlants = res.data.sort((a, b) => { 
+                    return a.watering_date[0].days_to_water - b.watering_date[0].days_to_water })
+                setNotWaterToday(sortedPlants)
             })
             .catch((error) => console.log(error))
     }
@@ -106,7 +108,7 @@ export const MyPlants = () => {
                                 return (
                                     <div className="eachMyPlant" key={myplant.id}>
                                         <div className="eachRight">
-                                            <h4 className="mx-5 pt-1">{myplant.name}</h4>
+                                            <h4 className="mx-5 pt-2">{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>
                                         </div>
                                         <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" onClick={() => handleWatering(myplant.watering_date)} />
@@ -129,12 +131,12 @@ export const MyPlants = () => {
                                 return (
                                     <div className="eachMyPlant" key={myplant.id}>
                                         <div className="eachRight">
-                                            <h4 className="mx-5 pt-1">{myplant.name}</h4>
+                                            <h4 className="mx-5 pt-2">{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>
                                         </div>
                                         <div className="eachLeft">
                                             <h5 className="mx-md-4 pt-2">in {myplant.watering_date[0].days_to_water} days</h5>
-                                            <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" onClick={() => handleWatering(myplant.watering_date)}/>
+                                            <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" onClick={() => handleWatering(myplant.watering_date)} />
                                         </div>
                                     </div>
                                 )

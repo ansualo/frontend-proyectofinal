@@ -37,7 +37,7 @@
 }
 
 .eachMyPlant{
-    height: 12vh;
+    height: 9vh;
     background-color: #edffe7;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -91,17 +91,18 @@
     .containerLeft{
         height: auto;
         width: 35vw;
+        padding-left: 4em;
     }
     .containerRight{
         height: auto;
         width: 65vw;
     }
     .myPlantsRow{
-        width: 55vw;
+        width: 50vw;
         padding: 0.5em;
     }
     .eachMyPlant{
-        height: 8vh;
+        height: 7vh;
         margin: 1em;
     }
     .eachRight{

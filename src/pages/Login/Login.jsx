@@ -20,7 +20,7 @@ export const Login = () => {
         loginUser(userInfo)
             .then((res) => {
                 dispatch(loginReducer(res))
-                navigate('/profile')
+                navigate('/myplants')
             })
             .catch((error) => console.log(error))
     }
