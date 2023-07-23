@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { usersData } from "../userSlice";
 import wateringcanIcon from "../../assets/icons/wateringcan.png"
 import { Profile } from "../Profile/Profile";
+import { CustomButton } from "../../common/CustomButton/CustomButton";
 
 export const MyPlants = () => {
 
@@ -13,6 +14,7 @@ export const MyPlants = () => {
     const token = data?.credentials?.token
     const [waterToday, setWaterToday] = useState([]);
     const [notWaterToday, setNotWaterToday] = useState([]);
+    const [showProfile, setShowProfile] = useState(false)
 
     useEffect(() => {
         if (waterToday.length === 0) {
@@ -36,6 +38,14 @@ export const MyPlants = () => {
         }
     }, [])
 
+    const handleProfile = () => {
+        if (!showProfile){
+            setShowProfile(true);
+        } else {
+            setShowProfile(false);
+        }
+    }
+
 
     return (
         <div className="myPlantsDesign">
@@ -48,7 +58,20 @@ export const MyPlants = () => {
                 <Row>
                     <Col>
                         <div className="profile">
-                            <Profile />
+                            {showProfile
+                                ? (<>
+                                    <CustomButton
+                                        name="Hide profile"
+                                        onClick={(handleProfile)}>
+                                    </CustomButton>
+                                    <Profile />
+                                </>)
+                                : (<CustomButton
+                                    name="View profile"
+                                    onClick={(handleProfile)}>
+                                </CustomButton>
+                                )
+                            }
                         </div>
                     </Col>
                 </Row>
@@ -64,8 +87,10 @@ export const MyPlants = () => {
                             ? (waterToday.map((myplant) => {
                                 return (
                                     <div className="eachMyPlant" key={myplant.id}>
-                                        <h5 className="ms-4">{myplant.name}</h5>
-                                        <h6>{myplant.plant.common_name}</h6>
+                                        <div className="plantName">
+                                            <h4 className="mx-5 pt-1">{myplant.name}</h4>
+                                            <div>{myplant.plant.common_name}</div>
+                                        </div>
                                         <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" />
                                     </div>
                                 )
@@ -85,9 +110,11 @@ export const MyPlants = () => {
                             ? (notWaterToday.map((myplant) => {
                                 return (
                                     <div className="eachMyPlant" key={myplant.id}>
-                                        <h5 className="ms-4">{myplant.name}</h5>
-                                        <h6>{myplant.plant.common_name}</h6>
-                                        <h5>in {myplant.watering_date[0].days_to_water} days</h5>
+                                        <div className="plantName">
+                                            <h4 className="mx-5 pt-1">{myplant.name}</h4>
+                                            <div>{myplant.plant.common_name}</div>
+                                        </div>
+                                        <h6>in {myplant.watering_date[0].days_to_water} days</h6>
                                         <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" />
                                     </div>
                                 )

@@ -110,15 +110,15 @@ export const Profile = () => {
                             </Col>
                         )
                         : (
-                            <>
-                                <Col xs={8} md={5} className="mt-3">
+                            <div className="profileButtons">
+                                <Col xs={5} md={5} className="mt-3 ms-md-4">
                                     <CustomButton name="Update" onClick={() => { setEditing(true) }}></CustomButton >
                                 </Col>
-                                <Col xs={8} md={4} className="mt-3">
+                                <Col className="mt-3">
                                     <CustomModal
                                         handleDelete={handleDelete} />
                                 </Col>
-                            </>
+                            </ div>
                         )
                     }
                 </Row>

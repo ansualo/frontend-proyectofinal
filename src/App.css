@@ -3,5 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-  background-color: #fdfdf2;
+  background-color: #fdfdfd;
+  font-family: 'Josefin Sans', sans-serif;
 }

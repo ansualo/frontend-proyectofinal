@@ -2,6 +2,7 @@
     min-height: 90vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -13,23 +14,18 @@
     justify-content: space-evenly;
 }
 
-.containerLeft{
+.containerLeft .containerRight{
     height: auto;
-    width: 35vw;
-}
-
-.containerRight{
-    height: auto;
-    width: 65vw;
+    width: 100vw;
 }
 
 .myPlantsRow{
     height: auto;
-    width: 55vw;
-    background-color: #8E5AFF;
+    width: 90vw;
+    background-color: #a9e296;
     border-radius: 2em;
     padding: 0.5em;
-    margin:1em;
+    margin-bottom:2em;
     display: flex;
     flex-direction: column;
 }
@@ -38,36 +34,84 @@
     text-indent: 2em;
     font-weight: bold;
     font-size: 1.5em;
+    padding-top: 0.5em;
 }
 
 .eachMyPlant{
-    height: 5vh;
+    height: 12vh;
     background-color: white;
-    margin: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
     border-radius: 1em;
     display:flex;
     align-items: center;
     justify-content: space-between;
 }
 
+.plantName{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .wateringcanIcon{
-    width: 2.5vw;
+    width: 14vw;
     height: auto;
 }
 
 
-
-
 .weatherapp{
-    width: 30vw;
+    width: 80vw;
     height: 20vh;
     background-color: blue;
     margin:1em;
 }
 
 .profile{
-    width: 25vw;
+    width: 90vw;
     height: auto;
     margin:1em;
     margin-bottom: 2em;
+}
+
+
+@media (min-width: 1025px) {
+
+    .myPlantsDesign{
+        flex-direction: row;
+    }
+    .containerLeft{
+        height: auto;
+        width: 35vw;
+    }
+    .containerRight{
+        height: auto;
+        width: 65vw;
+    }
+    .myPlantsRow{
+        width: 55vw;
+    }
+    .eachMyPlant{
+        height: 8vh;
+        margin: 1em;
+    }
+    .plantName{
+        flex-direction: row;
+    }
+    .wateringcanIcon{
+        width: 3.5vw;
+        height: auto;
+    }
+    .weatherapp{
+        width: 30vw;
+        height: 20vh;
+        background-color: blue;
+        margin:1em;
+    }
+    .profile{
+        width: 25vw;
+        height: auto;
+        margin:1em;
+        margin-bottom: 2em;
+    }
 }
