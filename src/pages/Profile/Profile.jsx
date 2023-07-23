@@ -39,7 +39,6 @@ export const Profile = () => {
     }, [editing])
 
     return (
-        <div className="profileDesign">
             <Container className="userProfile">
                 {editing
                     ? (
@@ -106,16 +105,16 @@ export const Profile = () => {
                 <Row className="profileRow">
                     {editing
                         ? (
-                            <Col xs={8} md={6} className="mt-3 mt-md-5">
+                            <Col xs={8} md={6} className="mt-3">
                                 <CustomButton name="Confirm" onClick={() => { handleEdit(newData, token) }}></CustomButton >
                             </Col>
                         )
                         : (
                             <>
-                                <Col xs={8} md={4} className="mt-3 mt-md-5">
-                                    <CustomButton name="Update profile" onClick={() => { setEditing(true) }}></CustomButton >
+                                <Col xs={8} md={5} className="mt-3">
+                                    <CustomButton name="Update" onClick={() => { setEditing(true) }}></CustomButton >
                                 </Col>
-                                <Col xs={8} md={4} className="mt-3 mt-md-5">
+                                <Col xs={8} md={4} className="mt-3">
                                     <CustomModal
                                         handleDelete={handleDelete} />
                                 </Col>
@@ -124,6 +123,5 @@ export const Profile = () => {
                     }
                 </Row>
             </Container>
-        </div >
     )
 }

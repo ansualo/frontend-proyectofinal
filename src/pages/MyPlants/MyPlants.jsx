@@ -39,7 +39,7 @@ export const MyPlants = () => {
 
     return (
         <div className="myPlantsDesign">
-            <Container className="bg-danger myPlantsContainer containerLeft">
+            <Container className="myPlantsContainer containerLeft">
                 <Row>
                     <Col>
                         <div className="weatherapp"></div>
@@ -47,11 +47,13 @@ export const MyPlants = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <div className="profile"></div>
+                        <div className="profile">
+                            <Profile />
+                        </div>
                     </Col>
                 </Row>
             </Container>
-            <Container className="bg-warning myPlantsContainer containerRight">
+            <Container className="myPlantsContainer containerRight">
                 <Row className="myPlantsRow">
                     <Col>
                         <div className="rowTitle">Thirsty today</div>
@@ -73,7 +75,7 @@ export const MyPlants = () => {
                         }
                     </Col>
                 </Row>
-                <Row className="myPlantsRow">
+                <Row className="myPlantsRow mb-4">
                     <Col>
                         <div className="rowTitle">Not thirsty yet</div>
                     </Col>

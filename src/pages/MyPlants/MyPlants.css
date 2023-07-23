@@ -1,5 +1,5 @@
 .myPlantsDesign{
-    height: 90vh;
+    min-height: 90vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -15,21 +15,21 @@
 
 .containerLeft{
     height: auto;
-    width: 40vw;
+    width: 35vw;
 }
 
-.containerRigth{
+.containerRight{
     height: auto;
-    width: 60vw;
+    width: 65vw;
 }
 
 .myPlantsRow{
     height: auto;
-    width: 50vw;
+    width: 55vw;
     background-color: #8E5AFF;
     border-radius: 2em;
     padding: 0.5em;
-    margin:1.5em;
+    margin:1em;
     display: flex;
     flex-direction: column;
 }
@@ -62,12 +62,12 @@
     width: 30vw;
     height: 20vh;
     background-color: blue;
-    margin:2em;
+    margin:1em;
 }
 
 .profile{
     width: 25vw;
-    height: 50vh;
-    background-color: yellow;
-    margin:2em;
+    height: auto;
+    margin:1em;
+    margin-bottom: 2em;
 }

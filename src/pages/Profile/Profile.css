@@ -1,23 +1,13 @@
-.profileDesign{
-    height: 90vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .userProfile{
-    width:90vw;
-    height: auto;
-    background-color: #bee199b5;
+    background-color: #FFC466;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 0.1em solid black;
-    border-radius: 3em;
-    padding: 1.5em;
-    padding-top: 2.5em;
+    border-radius: 2em;
+    padding: 1em;
+    padding-top: 2em;
 }
 
 .profileRow{
@@ -28,7 +18,7 @@
 }
 
 .profileLabel{
-    margin-left: 1em;
+    text-indent: 1em;
     margin-bottom: 0.2em;
     font-size: 1.2em;
 }
@@ -38,19 +28,11 @@
     margin-bottom: 0.5em;
     text-indent: 1em;
     padding: 0.4em;
-    border-radius: 0.5em;
+    border-radius: 1em;
 }
 
 .redBackground{
     background-color: crimson;
-    padding-left: 2.5em;
-    padding-right: 2.5em;
-}
-
-@media (min-width: 1025px) {
-
-    .userProfile{
-        width:50vw;
-        padding: 4em;
-    }
+    padding-left: 1em;
+    padding-right: 1em;
 }
