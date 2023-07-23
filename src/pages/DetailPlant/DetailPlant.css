@@ -9,12 +9,30 @@
 .plantCard{
     height: 75vh;
     width: 60vw;
+    border-radius: 2em;
     display: flex;
     background-color: bisque;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
-.cardLeft .cardRight {
+.cardLeft {
     height: 75vh;
     width: 50vw;
+    display: flex;
+    align-items: center;
+}
+
+.cardRight{
+    height: 75vh;
+    width: 50vw;
+    background-image: url('../../assets/images/login.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
+
+.generalInfo{
+    display: flex;
+    margin-left: 1em ;
 }
