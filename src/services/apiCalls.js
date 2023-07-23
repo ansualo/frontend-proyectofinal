@@ -75,16 +75,6 @@ export const deleteProfile = async (token) => {
 
 //MY PLANTS
 
-// export const getMyPlants = async (token) => {
-//     let config = {
-//         headers: {
-//             Authorization: `Bearer ${token}`,
-//         },
-//     }
-//     let res = await axios.get(`${URL}/myplants`, config)
-//     return res.data
-// }
-
 export const getPlantsWaterToday = async (token) => {
     let config = {
         headers: {
@@ -105,5 +95,14 @@ export const getPlantsNotWaterToday = async (token) => {
     return res.data
 }
 
+export const updateWateringDate = async (body, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.put(`${URL}/water`, body, config)
+    return res.data
+}
 
 

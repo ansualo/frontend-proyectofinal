@@ -21,10 +21,9 @@
 
 .myPlantsRow{
     height: auto;
-    width: 90vw;
+    width: 95vw;
     background-color: #a9e296;
     border-radius: 2em;
-    padding: 0.5em;
     margin-bottom:2em;
     display: flex;
     flex-direction: column;
@@ -39,7 +38,7 @@
 
 .eachMyPlant{
     height: 12vh;
-    background-color: white;
+    background-color: #edffe7;
     margin-top: 1em;
     margin-bottom: 1em;
     border-radius: 1em;
@@ -48,15 +47,24 @@
     justify-content: space-between;
 }
 
-.plantName{
+.eachRight{
+    width: 55%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.eachLeft{
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .wateringcanIcon{
-    width: 14vw;
+    width: 18vw;
     height: auto;
+    cursor: pointer;
 }
 
 
@@ -90,16 +98,22 @@
     }
     .myPlantsRow{
         width: 55vw;
+        padding: 0.5em;
     }
     .eachMyPlant{
         height: 8vh;
         margin: 1em;
     }
-    .plantName{
+    .eachRight{
         flex-direction: row;
+        width: 70%;
+    }
+    .eachLeft{
+        flex-direction: row;
+        width: 30%;
     }
     .wateringcanIcon{
-        width: 3.5vw;
+        width: 4.5vw;
         height: auto;
     }
     .weatherapp{

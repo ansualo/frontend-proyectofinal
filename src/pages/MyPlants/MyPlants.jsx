@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import './MyPlants.css'
+import dayjs from "dayjs";
 import { Col, Container, Row } from "react-bootstrap";
-import { getPlantsNotWaterToday, getPlantsWaterToday } from "../../services/apiCalls";
+import { getPlantsNotWaterToday, getPlantsWaterToday, updateWateringDate } from "../../services/apiCalls";
 import { useSelector } from "react-redux";
 import { usersData } from "../userSlice";
 import wateringcanIcon from "../../assets/icons/wateringcan.png"
@@ -16,36 +17,53 @@ export const MyPlants = () => {
     const [notWaterToday, setNotWaterToday] = useState([]);
     const [showProfile, setShowProfile] = useState(false)
 
-    useEffect(() => {
-        if (waterToday.length === 0) {
-            getPlantsWaterToday(token)
-                .then((res) => {
-                    console.log(res.data)
-                    setWaterToday(res.data)
-                })
-                .catch((error) => console.log(error))
-        }
-    }, [])
+    const fetchPlantsWaterToday = () => {
+        getPlantsWaterToday(token)
+            .then((res) => {
+                setWaterToday(res.data)
+            })
+            .catch((error) => console.log(error))
+    }
+
+    const fetchPlantsNotWaterToday = () => {
+        getPlantsNotWaterToday(token)
+            .then((res) => {
+                setNotWaterToday(res.data)
+            })
+            .catch((error) => console.log(error))
+    }
 
     useEffect(() => {
-        if (notWaterToday.length === 0) {
-            getPlantsNotWaterToday(token)
-                .then((res) => {
-                    console.log(res.data)
-                    setNotWaterToday(res.data)
-                })
-                .catch((error) => console.log(error))
-        }
+        fetchPlantsWaterToday()
+        fetchPlantsNotWaterToday()
     }, [])
+
+
+    const handleWatering = (watering_date) => {
+
+        const today = new Date();
+        const watered_on = dayjs(today).format("YYYY-MM-DD")
+        const id = watering_date[0].id
+        const body = {
+            "id": id,
+            "watered_on": watered_on
+        }
+
+        updateWateringDate(body, token)
+            .then(
+                fetchPlantsWaterToday(),
+                fetchPlantsNotWaterToday()
+            )
+            .catch((error) => console.log(error))
+    }
 
     const handleProfile = () => {
-        if (!showProfile){
+        if (!showProfile) {
             setShowProfile(true);
         } else {
             setShowProfile(false);
         }
     }
-
 
     return (
         <div className="myPlantsDesign">
@@ -87,11 +105,11 @@ export const MyPlants = () => {
                             ? (waterToday.map((myplant) => {
                                 return (
                                     <div className="eachMyPlant" key={myplant.id}>
-                                        <div className="plantName">
+                                        <div className="eachRight">
                                             <h4 className="mx-5 pt-1">{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>
                                         </div>
-                                        <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" />
+                                        <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" onClick={() => handleWatering(myplant.watering_date)} />
                                     </div>
                                 )
                             })
@@ -110,12 +128,14 @@ export const MyPlants = () => {
                             ? (notWaterToday.map((myplant) => {
                                 return (
                                     <div className="eachMyPlant" key={myplant.id}>
-                                        <div className="plantName">
+                                        <div className="eachRight">
                                             <h4 className="mx-5 pt-1">{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>
                                         </div>
-                                        <h6>in {myplant.watering_date[0].days_to_water} days</h6>
-                                        <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" />
+                                        <div className="eachLeft">
+                                            <h5 className="mx-md-4 pt-2">in {myplant.watering_date[0].days_to_water} days</h5>
+                                            <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" onClick={() => handleWatering(myplant.watering_date)}/>
+                                        </div>
                                     </div>
                                 )
                             })
