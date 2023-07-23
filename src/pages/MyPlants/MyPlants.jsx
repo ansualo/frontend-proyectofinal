@@ -3,11 +3,13 @@ import './MyPlants.css'
 import dayjs from "dayjs";
 import { Col, Container, Row } from "react-bootstrap";
 import { getPlantsNotWaterToday, getPlantsWaterToday, updateWateringDate } from "../../services/apiCalls";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { usersData } from "../userSlice";
 import wateringcanIcon from "../../assets/icons/wateringcan.png"
 import { Profile } from "../Profile/Profile";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
+import { savePlant } from "../plantSlice";
+import { useNavigate } from "react-router";
 
 export const MyPlants = () => {
 
@@ -16,6 +18,8 @@ export const MyPlants = () => {
     const [waterToday, setWaterToday] = useState([]);
     const [notWaterToday, setNotWaterToday] = useState([]);
     const [showProfile, setShowProfile] = useState(false)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const fetchPlantsWaterToday = () => {
         getPlantsWaterToday(token)
@@ -67,6 +71,11 @@ export const MyPlants = () => {
         }
     }
 
+    const handleDetail = (myplant) => {
+        dispatch(savePlant({data: myplant}))
+        navigate('/detail')
+    }
+
     return (
         <div className="myPlantsDesign">
             <Container className="myPlantsContainer containerLeft">
@@ -106,7 +115,7 @@ export const MyPlants = () => {
 
                             ? (waterToday.map((myplant) => {
                                 return (
-                                    <div className="eachMyPlant" key={myplant.id}>
+                                    <div className="eachMyPlant" key={myplant.id} onClick={() => handleDetail(myplant)}>
                                         <div className="eachRight">
                                             <h4 className="mx-5 pt-2">{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>
@@ -129,7 +138,7 @@ export const MyPlants = () => {
 
                             ? (notWaterToday.map((myplant) => {
                                 return (
-                                    <div className="eachMyPlant" key={myplant.id}>
+                                    <div className="eachMyPlant" key={myplant.id} onClick={() => handleDetail(myplant)}>
                                         <div className="eachRight">
                                             <h4 className="mx-5 pt-2">{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>

@@ -1,10 +1,16 @@
 import React from "react";
 import './DetailPlant.css';
 import { Container, Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { plantsData } from "../plantSlice";
 
 
 export const DetailPlant = () => {
 
+
+    const data = useSelector((state) => state.plant.data);
+
+    console.log(data)
 
     return (
         <div className="detailPlantDesign">
