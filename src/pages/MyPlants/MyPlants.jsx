@@ -125,7 +125,7 @@ export const MyPlants = () => {
                                 )
                             })
                             )
-                            : (<div></div>)
+                            : (<div className="happyPlants">Your plants are happy, they don't need to be watered today</div>)
                         }
                     </Col>
                 </Row>

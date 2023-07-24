@@ -7,32 +7,70 @@
 }
 
 .plantCard{
-    height: 75vh;
-    width: 60vw;
-    border-radius: 2em;
+    font-size: 1.2em;
+    height: auto;
+    width: 100vw;
     display: flex;
+    flex-direction: column-reverse;
     background-color: bisque;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
 }
 
 .cardLeft {
-    height: 75vh;
-    width: 50vw;
+    height: auto;
+    width:100vw;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-around;
 }
 
 .cardRight{
-    height: 75vh;
-    width: 50vw;
+    height: 70vh;
+    width: 100vw;
     background-image: url('../../assets/images/login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    border-top-right-radius: 2em;
-    border-bottom-right-radius: 2em;
 }
 
-.generalInfo{
+.colLeft{
     display: flex;
-    margin-left: 1em ;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+
+}
+
+.plantInfo{
+   font-weight: bold;
+   text-indent: 1.5em;
+}
+
+@media (min-width: 1025px) {
+
+    .plantCard{
+        height: 75vh;
+        width: 60vw;
+        flex-direction: row;
+        border-radius: 2em;
+    }
+    .cardLeft {
+        height: 75vh;
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .cardRight{
+        height: 75vh;
+        width: 50vw;
+        border-top-right-radius: 2em;
+        border-bottom-right-radius: 2em;
+    }
+    .plantInfo{
+        text-indent: 1em;
+     }
 }

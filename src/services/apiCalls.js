@@ -20,8 +20,18 @@ export const getAllPlants = async () => {
     return res.data
 }
 
-export const getPlantById = async (id) => {
-    let res = await axios.get(`${URL}/plants/${id}`)
+export const getPlantById = async (plant_id) => {
+    let res = await axios.get(`${URL}/plants/${plant_id}`)
+    return res.data
+}
+
+export const getMyPlantById = async (my_plant_id, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.get(`${URL}/myplants/${my_plant_id}`, config)
     return res.data
 }
 

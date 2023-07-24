@@ -3,7 +3,7 @@ import { createSlice} from "@reduxjs/toolkit";
 export const plantSlice = createSlice({
     name: "plant",
     initialState: {
-        data: null
+        data: {}
     },
     reducers: {
         savePlant: (state, action) => {

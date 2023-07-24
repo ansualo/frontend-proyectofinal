@@ -36,8 +36,14 @@
     padding-top: 0.5em;
 }
 
+.happyPlants{
+    text-align: center;
+    margin: 1em;
+    font-size: 1.2em;
+}
+
 .eachMyPlant{
-    height: 9vh;
+    height: 11vh;
     background-color: #edffe7;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -102,7 +108,7 @@
         padding: 0.5em;
     }
     .eachMyPlant{
-        height: 7vh;
+        height: 8vh;
         margin: 1em;
     }
     .eachRight{
