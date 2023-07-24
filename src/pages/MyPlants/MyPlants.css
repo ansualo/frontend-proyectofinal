@@ -67,6 +67,10 @@
     align-items: center;
 }
 
+.plantName{
+    cursor: pointer;
+}
+
 .wateringcanIcon{
     width: 18vw;
     height: auto;

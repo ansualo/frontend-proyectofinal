@@ -130,4 +130,36 @@ export const updateWateringDate = async (body, token) => {
     return res.data
 }
 
+//DETAIL PLANT
+
+export const updateMyPlant = async (id, newData, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.put(`${URL}/myplants/${id}`, newData, config)
+    return res.data
+}
+
+export const deleteWateringDate = async (id, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.delete(`${URL}/water/${id}`, config)
+    return res.data
+}
+
+export const deleteMyPlant = async (id, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.delete(`${URL}/myplants/${id}`, config)
+    return res.data
+}
+
 

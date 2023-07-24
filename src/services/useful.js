@@ -15,7 +15,7 @@ export const checkError = (name, value) => {
             }
             return "";
         default:
-            console.log("Unknown format");
+            return
     }
 
 

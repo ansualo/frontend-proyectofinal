@@ -115,9 +115,9 @@ export const MyPlants = () => {
 
                             ? (waterToday.map((myplant) => {
                                 return (
-                                    <div className="eachMyPlant" key={myplant.id} onClick={() => handleDetail(myplant)}>
+                                    <div className="eachMyPlant" key={myplant.id}>
                                         <div className="eachRight">
-                                            <h4 className="mx-5 pt-2">{myplant.name}</h4>
+                                            <h4 className="mx-5 pt-2 plantName" onClick={() => handleDetail(myplant)}>{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>
                                         </div>
                                         <img src={wateringcanIcon} alt="Watering can" className="wateringcanIcon me-4" onClick={() => handleWatering(myplant.watering_date)} />
@@ -138,9 +138,9 @@ export const MyPlants = () => {
 
                             ? (notWaterToday.map((myplant) => {
                                 return (
-                                    <div className="eachMyPlant" key={myplant.id} onClick={() => handleDetail(myplant)}>
+                                    <div className="eachMyPlant" key={myplant.id}>
                                         <div className="eachRight">
-                                            <h4 className="mx-5 pt-2">{myplant.name}</h4>
+                                            <h4 className="mx-5 pt-2 plantName" onClick={() => handleDetail(myplant)}>{myplant.name}</h4>
                                             <div>{myplant.plant.common_name}</div>
                                         </div>
                                         <div className="eachLeft">
