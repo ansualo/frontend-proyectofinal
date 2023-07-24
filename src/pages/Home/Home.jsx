@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import './Home.css'
 import { InputText } from "../../common/InputText/InputText";
 import { CustomCard } from "../../common/CustomCard/CustomCard";
-import { getAllPlants, getPlantByWatering, getPlantBySunlight, getPlantByName } from "../../services/apiCalls";
+import { getAllPlants, getPlantByWatering, getPlantBySunlight, getPlantByName, getMyPlantByPlantId } from "../../services/apiCalls";
 import Form from 'react-bootstrap/Form';
 import { CustomButton } from "../../common/CustomButton/CustomButton";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { usersData } from "../userSlice";
+import { savePlant } from "../plantSlice";
 
 
 export const Home = () => {
@@ -16,6 +20,10 @@ export const Home = () => {
     const [plantsByWatering, setPlantsByWatering] = useState([]);
     const [selectedSunlight, setSelectedSunlight] = useState("");
     const [plantsBySunlight, setPlantsBySunlight] = useState([]);
+    const user = useSelector(usersData)
+    const token = user?.credentials?.token
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
 
     const fetchPlants = () => {
@@ -24,7 +32,6 @@ export const Home = () => {
         plantsByWatering.length = 0
         getAllPlants()
             .then((res) => {
-                console.log(res.data)
                 setAllPlants(res.data);
             })
             .catch((error) => console.log(error));
@@ -73,6 +80,26 @@ export const Home = () => {
             .catch((error) => console.log(error))
     }, [selectedSunlight]);
 
+
+    const handleDetail = (plant) => {
+        if(token){
+            const plant_id = plant.id;
+
+            getMyPlantByPlantId(plant_id, token)
+            .then((res) => {
+                if (res.message !== 'Incorrect plant') {
+                    dispatch(savePlant({ data: res.data }));
+                } else {
+                    dispatch(savePlant({ data: plant }));
+                }
+                navigate('/detail');
+            })
+            .catch((error) => console.log(error))
+        } else {
+            dispatch(savePlant({ data: plant }));
+            navigate('/detail');
+        }
+    };
 
     return (
         <div className="homeDesign">
@@ -185,6 +212,7 @@ export const Home = () => {
                                 common_name={plant.common_name}
                                 sunlight={plant.sunlight}
                                 watering={plant.watering}
+                                onClick={() => handleDetail(plant)}
                             ></CustomCard>
                         )
                     }))
@@ -196,6 +224,7 @@ export const Home = () => {
                                     common_name={plant.common_name}
                                     sunlight={plant.sunlight}
                                     watering={plant.watering}
+                                    onClick={() => handleDetail(plant)}
                                 ></CustomCard>
                             )
                         }))
@@ -209,6 +238,7 @@ export const Home = () => {
                                                 common_name={plant.common_name}
                                                 sunlight={plant.sunlight}
                                                 watering={plant.watering}
+                                                onClick={() => handleDetail(plant)}
                                             ></CustomCard>
                                         )
                                     }))
@@ -223,6 +253,7 @@ export const Home = () => {
                                                         common_name={plant.common_name}
                                                         sunlight={plant.sunlight}
                                                         watering={plant.watering}
+                                                        onClick={() => handleDetail(plant)}
                                                     ></CustomCard>
                                                 )
                                             })

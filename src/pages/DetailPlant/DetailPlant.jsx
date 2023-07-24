@@ -11,24 +11,32 @@ export const DetailPlant = () => {
 
     const user = useSelector(usersData)
     const token = user?.credentials?.token
-    const data = useSelector((state) => state.plant.data);
-    const plant_id = data.plant_id
-    const my_plant_id = data.id
-    // console.log(data)
-
+    const data = useSelector(plantsData);
+    const plant_id = data.data.plant_id
     const [generalInfo, setGeneralInfo] = useState({});
     const [specificInfo, setSpecificInfo] = useState({});
 
     useEffect(() => {
-        getPlantById(plant_id)
-            .then((res) => setGeneralInfo(res.data[0]))
-            .catch((error) => console.log(error))
 
-        getMyPlantById(my_plant_id, token)
-            .then((res) => setSpecificInfo(res.data))
-            .catch((error) => console.log(error))
+        if (plant_id) {
+            const my_plant_id = data.data.id
+
+            getPlantById(plant_id)
+                .then((res) => setGeneralInfo(res.data[0]))
+                .catch((error) => console.log(error))
+
+            getMyPlantById(my_plant_id, token)
+                .then((res) => setSpecificInfo(res.data))
+                .catch((error) => console.log(error))
+
+        } else {
+            const plant_id = data.data.id
+
+            getPlantById(plant_id)
+                .then((res) => setGeneralInfo(res.data[0]))
+                .catch((error) => console.log(error))
+        }
     }, [])
-
 
     return (
         <div className="detailPlantDesign">
@@ -52,7 +60,7 @@ export const DetailPlant = () => {
                             <h5 className="plantInfo">{generalInfo?.watering}</h5>
                         </div>
                     </Col>
-                    {token
+                    {plant_id
                         ? (<Col className="colLeft">
                             <div className="d-md-flex ms-4">
                                 <h5>Name:</h5>
@@ -60,11 +68,11 @@ export const DetailPlant = () => {
                             </div>
                             <div className="d-md-flex ms-4">
                                 <h5>Last watering was on:</h5>
-                                <h5 className="plantInfo">{specificInfo?.watering_date[0]?.watered_on}</h5>
+                                <h5 className="plantInfo">{specificInfo?.watering_date?.[0]?.watered_on}</h5>
                             </div>
                             <div className="d-md-flex ms-4">
                                 <h5>Next watering will be on :</h5>
-                                <h5 className="plantInfo">{specificInfo?.watering_date[0]?.next_date_water}</h5>
+                                <h5 className="plantInfo">{specificInfo?.watering_date?.[0]?.next_date_water}</h5>
                             </div>
                             <div className="d-md-flex ms-4">
                                 <h5>How many days between watering:</h5>
@@ -79,6 +87,6 @@ export const DetailPlant = () => {
                     </Col>
                 </Row>
             </Container>
-        </div>
+        </div >
     )
 }

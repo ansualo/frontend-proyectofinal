@@ -5,10 +5,10 @@ import image from '../../assets/images/login.jpg'
 import waterIcon from '../../assets/icons/water.png'
 import sunIcon from '../../assets/icons/sun.png'
 
-export const CustomCard = ({ common_name, sunlight, watering }) => {
+export const CustomCard = ({ onClick, common_name, sunlight, watering }) => {
 
   return (
-    <Card className="bg-dark text-white cardDesign">
+    <Card className="bg-dark text-white cardDesign" onClick={onClick}>
       <Card.Img src={image} alt="Card image" />
       <Card.ImgOverlay>
         <Card.Title className="text-dark">{common_name}</Card.Title>

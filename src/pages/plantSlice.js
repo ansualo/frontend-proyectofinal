@@ -13,6 +13,6 @@ export const plantSlice = createSlice({
     },
 });
 
-export const plantsData = (state) => state.myplant;
+export const plantsData = (state) => state.plant;
 export const { savePlant } = plantSlice.actions;
 export default plantSlice.reducer;

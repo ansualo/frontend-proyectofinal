@@ -35,6 +35,16 @@ export const getMyPlantById = async (my_plant_id, token) => {
     return res.data
 }
 
+export const getMyPlantByPlantId = async (plant_id, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.get(`${URL}/myplants/plant/${plant_id}`, config)
+    return res.data
+}
+
 export const getPlantByName = async (searchedName) => {
     let res = await axios.post(`${URL}/plants/name`, searchedName)
     return res.data
