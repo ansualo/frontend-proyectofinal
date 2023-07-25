@@ -6,6 +6,7 @@ import { Home } from "../Home/Home";
 import { Profile } from "../Profile/Profile";
 import { MyPlants } from "../MyPlants/MyPlants";
 import { DetailPlant } from "../DetailPlant/DetailPlant";
+import { AdminProfile } from "../AdminProfile/AdminProfile";
 
 export const Body = () => {
     return (
@@ -17,6 +18,7 @@ export const Body = () => {
                 <Route path='/login' element={<Login />} />
                 <Route path='/myplants' element={<MyPlants />} />
                 <Route path='/detail' element={<DetailPlant />} />
+                <Route path='/admin' element={<AdminProfile />} />
             </Routes>
         </>
     )
