@@ -183,3 +183,14 @@ export const deleteWateringDate = async (id, token) => {
 }
 
 
+//ALL USERS
+
+export const getAllUsers = async (token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.get(`${URL}/allusers`, config)
+    return res.data
+}

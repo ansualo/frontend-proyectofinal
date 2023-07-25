@@ -3,10 +3,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Register } from "../Register/Register";
 import { Login } from "../Login/Login";
 import { Home } from "../Home/Home";
-import { Profile } from "../Profile/Profile";
 import { MyPlants } from "../MyPlants/MyPlants";
 import { DetailPlant } from "../DetailPlant/DetailPlant";
 import { AdminProfile } from "../AdminProfile/AdminProfile";
+import { AllUsers } from "../AllUsers/AllUsers";
 
 export const Body = () => {
     return (
@@ -19,6 +19,7 @@ export const Body = () => {
                 <Route path='/myplants' element={<MyPlants />} />
                 <Route path='/detail' element={<DetailPlant />} />
                 <Route path='/admin' element={<AdminProfile />} />
+                <Route path='/allusers' element={<AllUsers />} />
             </Routes>
         </>
     )
