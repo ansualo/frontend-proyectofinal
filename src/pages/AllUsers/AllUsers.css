@@ -19,6 +19,10 @@
     margin: 1em;
 }
 
+.deleted{
+    background-color: rgb(237, 145, 145);
+}
+
 .userLabel{
     background-color: #6c6c6c;
     color: white;

@@ -194,3 +194,33 @@ export const getAllUsers = async (token) => {
     let res = await axios.get(`${URL}/allusers`, config)
     return res.data
 }
+
+export const getDeletedUsers = async (token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.get(`${URL}/allusers/deleted`, config)
+    return res.data
+}
+
+export const deleteProfileAsAdmin = async (id, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.delete(`${URL}/profile/${id}`, config)
+    return res
+}
+
+export const restoreProfile = async (token, id) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.post(`${URL}/profile/${id}`, config)
+    return res
+}
