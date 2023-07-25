@@ -132,6 +132,16 @@ export const updateWateringDate = async (body, token) => {
 
 //DETAIL PLANT
 
+export const createMyPlant = async (id, newData, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.post(`${URL}/myplants/${id}`, newData, config)
+    return res.data
+}
+
 export const updateMyPlant = async (id, newData, token) => {
     let config = {
         headers: {
@@ -142,16 +152,6 @@ export const updateMyPlant = async (id, newData, token) => {
     return res.data
 }
 
-export const deleteWateringDate = async (id, token) => {
-    let config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    }
-    let res = await axios.delete(`${URL}/water/${id}`, config)
-    return res.data
-}
-
 export const deleteMyPlant = async (id, token) => {
     let config = {
         headers: {
@@ -159,6 +159,26 @@ export const deleteMyPlant = async (id, token) => {
         },
     }
     let res = await axios.delete(`${URL}/myplants/${id}`, config)
+    return res.data
+}
+
+export const createWateringDate = async (waterData, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.post(`${URL}/water`, waterData, config)
+    return res.data
+}
+
+export const deleteWateringDate = async (id, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.delete(`${URL}/water/${id}`, config)
     return res.data
 }
 
