@@ -215,12 +215,12 @@ export const deleteProfileAsAdmin = async (id, token) => {
     return res
 }
 
-export const restoreProfile = async (token, id) => {
+export const restoreProfile = async (id, token) => {
     let config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     }
-    let res = await axios.post(`${URL}/profile/${id}`, config)
+    let res = await axios.put(`${URL}/profile/${id}`, null, config)
     return res
 }

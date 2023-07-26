@@ -55,12 +55,9 @@ export const AllUsers = () => {
 
     return (
         <div className="allUsersDesign">
-
             <Container className="allUsersContainer">
-
                 {usersInfo.length > 0
-                    ? (
-                        areDeleted
+                    ? (areDeleted
                             ? (<>
                                 <Row className="d-flex justify-content-center justify-content-md-end mt-4 my-md-4">
                                     <Col xs={8} md={3}>

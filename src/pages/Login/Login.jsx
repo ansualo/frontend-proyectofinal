@@ -20,10 +20,15 @@ export const Login = () => {
         loginUser(userInfo)
             .then((res) => {
                 dispatch(loginReducer(res))
-                navigate('/myplants')
+                if(res.data.role_id === 1){
+                    navigate('/admin')
+                } else {
+                    navigate('/myplants')
+                }
             })
             .catch((error) => console.log(error))
     }
+
 
     return (
         <div className="loginDesign">
