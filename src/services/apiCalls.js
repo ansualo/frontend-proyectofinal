@@ -227,3 +227,13 @@ export const restoreProfile = async (id, token) => {
 
 //PLANTS SETTINGS
 
+export const createPlant = async (newPlant, token) => {
+    let config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+    let res = await axios.post(`${URL}/plants`, newPlant, config)
+    return res.data
+}
+
