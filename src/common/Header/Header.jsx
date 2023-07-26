@@ -4,9 +4,16 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../assets/images/logo.png'
+import { useDispatch, useSelector } from "react-redux";
+import { logoutReducer, usersData } from "../../pages/userSlice";
 
 
 export const Header = () => {
+
+    const data = useSelector(usersData)
+    const token = data?.credentials?.token
+    const role = data?.data?.role_id
+    const dispatch = useDispatch()
 
     return (
         <Navbar expand="lg" sticky="top" className="headerDesign">
@@ -21,9 +28,20 @@ export const Header = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto headerLinks">
-                        <Nav.Link href="#home">Login</Nav.Link>
-                        {/* <Nav.Link href="#link">Link</Nav.Link>
-                        <Nav.Link href="#link">Hola</Nav.Link> */}
+                        {token ? (
+                            role === 2
+                                ? (<>
+                                    <Nav.Link href="/" className="me-2">Search</Nav.Link>
+                                    <Nav.Link href="/myplants" className="me-2">My plants</Nav.Link>
+                                    <Nav.Link href="/" onClick={() => dispatch(logoutReducer())}>Logout</Nav.Link>
+                                </>)
+                                : (<>
+                                    <Nav.Link href="/admin" className="me-2">Settings</Nav.Link>
+                                    <Nav.Link href="/" onClick={() => dispatch(logoutReducer())}>Logout</Nav.Link>
+                                </>)
+                        ) : (
+                            <Nav.Link href="/login">Login</Nav.Link>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
