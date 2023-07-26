@@ -1,25 +1,25 @@
 import React from 'react';
 import './CustomCard.css';
 import Card from 'react-bootstrap/Card';
-import image from '../../assets/images/login.jpg'
 import waterIcon from '../../assets/icons/water.png'
 import sunIcon from '../../assets/icons/sun.png'
 
-export const CustomCard = ({ onClick, common_name, sunlight, watering }) => {
+export const CustomCard = ({ image, onClick, common_name, scientific_name, sunlight, watering }) => {
 
   return (
     <Card className="bg-dark text-white cardDesign" onClick={onClick}>
-      <Card.Img src={image} alt="Card image" />
-      <Card.ImgOverlay>
-        <Card.Title className="text-dark">{common_name}</Card.Title>
-      </Card.ImgOverlay>
-      <div className="d-flex justify-content-center">
-        <Card.Img className="plantIcon mt-2" src={sunIcon} alt="Card image" />
-        <Card.Text className="mb-0 mt-2">{sunlight}</Card.Text>
-      </div>
-      <div className="d-flex justify-content-center">
-        <Card.Img className="plantIcon" src={waterIcon} alt="Card image" />
-        <Card.Text>{watering}</Card.Text>
+      <Card.Img src={image} alt="Card image" className="imageCard" />
+      <Card.Title className="my-2">{common_name}</Card.Title>
+      <Card.Subtitle className="mb-2">{scientific_name}</Card.Subtitle >
+      <div className="bottomCard">
+        <div className="d-flex justify-content-start border-top">
+          <Card.Img className="plantIcon mt-3" src={sunIcon} alt="Card image" />
+          <Card.Text className="mb-0 mt-3 mb-2">{sunlight}</Card.Text>
+        </div>
+        <div className="d-flex justify-content-start">
+          <Card.Img className="plantIcon mb-2" src={waterIcon} alt="Card image" />
+          <Card.Text>{watering}</Card.Text>
+        </div>
       </div>
     </Card>
   );

@@ -1,30 +1,51 @@
 .cardDesign{
-    width: 45vw;
-    height: 58vh;
+    width: 48vw;
+    min-height: 75vh;
     text-align: center;
-    margin: 0.5em;
+    margin: 0.2em;
     border:white;
     cursor: pointer;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.imageCard{
+    height: 40vh;
+    width: 48vw;
+}
+
+.bottomCard{
+    height: 22vh;
 }
 
 .plantIcon{
-    width: 8vw;
-    height: 5vh;
-    margin-right: 0.2em;
+    width: auto;
+    height: 4vh;
+    margin-right: 0.4em;
+    margin-left: 0.4em;
 }
 
-@media only screen and (min-width: 1025px) {
+@media (min-width: 1025px) {
 
     .cardDesign{
-        width: 14vw;
-        height: 56vh;
+        width: 17vw;
+        min-height: 60vh;
         text-align: center;
-        margin: 2em;
+        margin: 1.5em;
+    }
+    .imageCard{
+        width: 17vw;
+        height: 40vh;
+    }
+    .bottomCard{
+        height: auto;
     }
     .plantIcon{
-        width: 2vw;
-        height: 4vh;
-        margin-right: 0.4em;
+        width: auto;
+        height: 3vh;
+        margin-right: 0.6em;
+        margin-left: 0.4em;
     }
+    
 
 }

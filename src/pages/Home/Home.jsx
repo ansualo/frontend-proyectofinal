@@ -210,8 +210,10 @@ export const Home = () => {
                             <CustomCard
                                 key={plant.id}
                                 common_name={plant.common_name}
+                                scientific_name={plant.scientific_name}
                                 sunlight={plant.sunlight}
                                 watering={plant.watering}
+                                image={plant.image}
                                 onClick={() => handleDetail(plant)}
                             ></CustomCard>
                         )
@@ -222,8 +224,10 @@ export const Home = () => {
                                 <CustomCard
                                     key={plant.id}
                                     common_name={plant.common_name}
+                                    scientific_name={plant.scientific_name}
                                     sunlight={plant.sunlight}
                                     watering={plant.watering}
+                                    image={plant.image}
                                     onClick={() => handleDetail(plant)}
                                 ></CustomCard>
                             )
@@ -236,8 +240,10 @@ export const Home = () => {
                                             <CustomCard
                                                 key={plant.id}
                                                 common_name={plant.common_name}
+                                                scientific_name={plant.scientific_name}
                                                 sunlight={plant.sunlight}
                                                 watering={plant.watering}
+                                                image={plant.image}
                                                 onClick={() => handleDetail(plant)}
                                             ></CustomCard>
                                         )
@@ -251,8 +257,10 @@ export const Home = () => {
                                                     <CustomCard
                                                         key={plant.id}
                                                         common_name={plant.common_name}
+                                                        scientific_name={plant.scientific_name}
                                                         sunlight={plant.sunlight}
                                                         watering={plant.watering}
+                                                        image={plant.image}
                                                         onClick={() => handleDetail(plant)}
                                                     ></CustomCard>
                                                 )
