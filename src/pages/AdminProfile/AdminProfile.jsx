@@ -7,17 +7,16 @@ export const AdminProfile = () => {
 
     const navigate = useNavigate()
 
-
     return (
         <Container className="adminDesign">
             <Row className="adminSettings" >
                 <Col xs={12} md={12} className="d-flex flex-column align-items-center">
-                        <div className="adminOptions" onClick={()=>(navigate('/allusers'))}>
-                            Users settings
-                        </div>
-                        <div className="adminOptions">
-                            Plants settings
-                        </div>
+                    <div className="adminOptions" onClick={() => navigate('/allusers')}>
+                        Users settings
+                    </div>
+                    <div className="adminOptions" onClick={() => navigate('/allplants')}>
+                        Plants settings
+                    </div>
                 </Col>
             </Row>
         </Container>

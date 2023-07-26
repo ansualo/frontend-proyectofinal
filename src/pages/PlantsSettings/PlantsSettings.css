@@ -1,0 +1,24 @@
+.plantsSetttingsDesign{
+    min-height: 85vh;
+    width: 100vw;
+}
+
+.plantsRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.actions{
+    text-align: center;
+}
+
+.deleteIcon{
+    width: auto;
+    height: 5vh;
+    cursor: pointer;
+}
+
+@media (min-width: 1025px) {
+
+}

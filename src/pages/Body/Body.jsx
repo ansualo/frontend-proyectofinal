@@ -7,6 +7,7 @@ import { MyPlants } from "../MyPlants/MyPlants";
 import { DetailPlant } from "../DetailPlant/DetailPlant";
 import { AdminProfile } from "../AdminProfile/AdminProfile";
 import { AllUsers } from "../AllUsers/AllUsers";
+import { PlantsSettings } from "../PlantsSettings/PlantsSettings";
 
 export const Body = () => {
     return (
@@ -20,6 +21,7 @@ export const Body = () => {
                 <Route path='/detail' element={<DetailPlant />} />
                 <Route path='/admin' element={<AdminProfile />} />
                 <Route path='/allusers' element={<AllUsers />} />
+                <Route path='/allplants' element={<PlantsSettings />} />
             </Routes>
         </>
     )

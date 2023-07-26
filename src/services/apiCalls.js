@@ -52,14 +52,14 @@ export const getPlantByName = async (searchedName) => {
 
 export const getPlantByWatering = async (selectedWatering) => {
 
-    const body = {"watering": selectedWatering}
+    const body = { "watering": selectedWatering }
     let res = await axios.post(`${URL}/plants/watering`, body)
     return res.data
 }
 
 export const getPlantBySunlight = async (selectedSunlight) => {
 
-    const body = {"sunlight": selectedSunlight}
+    const body = { "sunlight": selectedSunlight }
     let res = await axios.post(`${URL}/plants/sunlight`, body)
     return res.data
 }
@@ -224,3 +224,6 @@ export const restoreProfile = async (id, token) => {
     let res = await axios.put(`${URL}/profile/${id}`, null, config)
     return res
 }
+
+//PLANTS SETTINGS
+
