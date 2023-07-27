@@ -48,6 +48,7 @@
 
 .plantsMenu{
     display: flex;
+    flex-wrap: wrap;  
 }
 
 .homeCards{

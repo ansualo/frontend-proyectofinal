@@ -64,6 +64,20 @@ export const getPlantBySunlight = async (selectedSunlight) => {
     return res.data
 }
 
+export const getPlantByFlowers = async (selectedFlowers) => {
+
+    const body = { "flowers": selectedFlowers }
+    let res = await axios.post(`${URL}/plants/flowers`, body)
+    return res.data
+}
+
+export const getPlantByPoisonous = async (selectedPoisonous) => {
+
+    const body = { "poisonous": selectedPoisonous }
+    let res = await axios.post(`${URL}/plants/poisonous`, body)
+    return res.data
+}
+
 
 //PROFILE
 
