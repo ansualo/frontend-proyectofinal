@@ -23,7 +23,6 @@ export const DetailPlant = () => {
     const [editing, setEditing] = useState(false);
     const [newData, setNewData] = useState({ "name": "", "days_between_water": null });
     const [newPlant, setNewPlant] = useState(false);
-    const [newPlantId, setNewPlantId] = useState("");
     const navigate = useNavigate()
 
     const fetchPlants = () => {
@@ -82,7 +81,7 @@ export const DetailPlant = () => {
                 "my_plant_id": plantId,
                 "watered_on": watered_on
             }
-    
+
             await createWateringDate(newWater, token)
 
             navigate('/myplants');
@@ -97,21 +96,29 @@ export const DetailPlant = () => {
                 <Row className="cardLeft">
                     {/* general information of the plant */}
                     <Col className="colLeft">
-                        <div className="d-md-flex ms-4">
+                        <div className="d-md-flex ms-4 mb-md-1">
                             <h5>Common name:</h5>
                             <h5 className="plantInfo">{generalInfo?.common_name}</h5>
                         </div>
-                        <div className="d-md-flex ms-4">
+                        <div className="d-md-flex ms-4 mb-md-1">
                             <h5>Scientific name:</h5>
                             <h5 className="plantInfo">{generalInfo?.scientific_name}</h5>
                         </div>
-                        <div className="d-md-flex ms-4">
+                        <div className="d-md-flex ms-4 mb-md-1">
                             <h5>Sunlight:</h5>
                             <h5 className="plantInfo">{generalInfo?.sunlight}</h5>
                         </div>
-                        <div className="d-md-flex ms-4">
+                        <div className="d-md-flex ms-4 mb-md-1">
                             <h5>Watering:</h5>
                             <h5 className="plantInfo">{generalInfo?.watering}</h5>
+                        </div>
+                        <div className="d-md-flex ms-4 mb-md-1">
+                            <h5>Flowers:</h5>
+                            <h5 className="plantInfo">{generalInfo?.flowers ? "Yes" : "No"}</h5>
+                        </div>
+                        <div className="d-md-flex ms-4 mb-md-1">
+                            <h5>Poisonous to pets:</h5>
+                            <h5 className="plantInfo">{generalInfo?.poisonous_to_pets ? "Yes" : "No"}</h5>
                         </div>
                     </Col>
                     {plant_id
@@ -120,18 +127,18 @@ export const DetailPlant = () => {
                             // editing specific plant information
                             ? (<>
                                 <Col className="colLeft">
-                                    <div className="d-md-flex ms-4">
-                                        <h5>Name:</h5>
+                                    <div className="ms-3" >
                                         <InputText
+                                            label={"Name:"}
                                             name={"name"}
                                             placeholder={specificInfo?.name}
                                             state={setNewData}
                                             errorState={() => { }}
                                         />
                                     </div>
-                                    <div className="d-md-flex ms-4">
-                                        <h5>How many days between watering:</h5>
+                                    <div className="ms-3">
                                         <InputText
+                                            label={"How many days between watering:"}
                                             name={"days_between_water"}
                                             type={"number"}
                                             placeholder={specificInfo?.days_between_water}
@@ -139,16 +146,16 @@ export const DetailPlant = () => {
                                             errorState={() => { }}
                                         />
                                     </div>
-                                    <div className="d-md-flex ms-4">
+                                    <div className="d-md-flex ms-4 mt-2">
                                         <h5>Last watering was on:</h5>
                                         <h5 className="plantInfo">{specificInfo?.watering_date?.[0]?.watered_on}</h5>
                                     </div>
-                                    <div className="d-md-flex ms-4">
+                                    <div className="d-md-flex ms-4 mt-2">
                                         <h5>Next watering will be on :</h5>
                                         <h5 className="plantInfo">{specificInfo?.watering_date?.[0]?.next_date_water}</h5>
                                     </div>
                                 </Col>
-                                <Col xs={8} md={6} className="mt-3">
+                                <Col xs={8} md={6} className="my-2">
                                     <CustomButton name="Confirm" onClick={() => { handleEdit(newData, token) }}></CustomButton >
                                 </Col>
                             </>
@@ -186,45 +193,49 @@ export const DetailPlant = () => {
                         )
                         // the user doesn't have the plant in my plants
                         : (
-                            (newPlant && token
-                                ? (<>
-                                    <Col xs={10} md={10}>
-                                        <div className="">
-                                            <InputText
-                                                label={"Name:"}
-                                                name={"name"}
-                                                placeholder={specificInfo?.name}
-                                                state={setNewData}
-                                                errorState={() => { }}
-                                            />
-                                        </div>
-                                        <div className="mb-4">
-                                            <InputText
-                                                label={"How many days between watering:"}
-                                                name={"days_between_water"}
-                                                type={"number"}
-                                                placeholder={specificInfo?.days_between_water}
-                                                state={setNewData}
-                                                errorState={() => { }}
-                                            />
-                                        </div>
-                                    </Col>
-                                    <Col xs={5} md={6} className="mb-4">
-                                        <CustomButton name="Confirm" onClick={() => { handleAddPlant() }}></CustomButton >
-                                    </Col>
-                                </>
+                            (token
+                                ? (newPlant
+                                    ? (<>
+                                        <Col xs={10} md={10}>
+                                            <div className="">
+                                                <InputText
+                                                    label={"Name:"}
+                                                    name={"name"}
+                                                    placeholder={specificInfo?.name}
+                                                    state={setNewData}
+                                                    errorState={() => { }}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <InputText
+                                                    label={"How many days between watering:"}
+                                                    name={"days_between_water"}
+                                                    type={"number"}
+                                                    placeholder={specificInfo?.days_between_water}
+                                                    state={setNewData}
+                                                    errorState={() => { }}
+                                                />
+                                            </div>
+                                        </Col>
+                                        <Col xs={5} md={6} className="mb-4">
+                                            <CustomButton name="Confirm" onClick={() => { handleAddPlant() }}></CustomButton >
+                                        </Col>
+                                    </>)
+                                    : (
+                                        <Col xs={8} md={6} className="mb-4">
+                                            <CustomButton name="Add to my plants" onClick={() => { setNewPlant(true) }}></CustomButton >
+                                        </Col>
+                                    )
                                 )
-                                : (
-                                    <Col xs={8} md={6} className="mb-4">
-                                        <CustomButton name="Add to my plants" onClick={() => { setNewPlant(true) }}></CustomButton >
-                                    </Col>
-                                )
+                                : (<></>)
                             )
                         )
                     }
                 </Row >
                 <Row className="cardRight">
-                    <Col></Col>
+                    <Col className="m-0 p-0">
+                        <img src={generalInfo.image} alt="Plant image" className="cardRight" />
+                    </Col>
                 </Row>
             </Container >
         </div >
