@@ -46,24 +46,22 @@
     text-align: center;
 }
 
+.plantsMenu{
+    display: flex;
+}
+
 .homeCards{
-    min-height: 50vh;
-    width: 100vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.plantsMenu{
-    display: flex;
-}
-
 .eachMenu{
     margin:1em;
 }
 
-@media only screen and (min-width: 1025px) {
+@media (min-width: 768px) {
 
     .homeGreen{
         width: 70vw;
@@ -80,7 +78,13 @@
     .searchLetters{
         font-size: 5em;
     }
-    .eachMenu{
-        margin: 2em;
+    .plantsMenu{
+        display: block;
+        width: 15vw;
+        margin-left: 1.5em;
+    }
+    .homeCards{
+        width: 85vw;
     }
 }
+

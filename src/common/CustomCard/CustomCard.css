@@ -1,12 +1,13 @@
 .cardDesign{
     width: 48vw;
-    min-height: 75vh;
+    min-height: 68vh;
     text-align: center;
     margin: 0.2em;
     border:white;
     cursor: pointer;
     display: flex;
     justify-content: space-evenly;
+    font-size: 0.8em;
 }
 
 .imageCard{
@@ -15,7 +16,7 @@
 }
 
 .bottomCard{
-    height: 22vh;
+    height: 12vh;
 }
 
 .plantIcon{
@@ -25,17 +26,18 @@
     margin-left: 0.4em;
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 768px) {
 
     .cardDesign{
         width: 17vw;
         min-height: 60vh;
         text-align: center;
         margin: 1.5em;
+        font-size: 1em;
     }
     .imageCard{
         width: 17vw;
-        height: 40vh;
+        height: 42vh;
     }
     .bottomCard{
         height: auto;
@@ -46,6 +48,20 @@
         margin-right: 0.6em;
         margin-left: 0.4em;
     }
-    
+}
 
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .cardDesign{
+        width: 30vw;
+        min-height: 45vh;
+        text-align: center;
+        margin: 1.5em;
+        font-size: 1em;
+    }
+    .imageCard{
+        width: 30vw;
+        height: 35vh;
+    }
 }

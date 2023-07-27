@@ -14,57 +14,43 @@ import { savePlant } from "../plantSlice";
 export const Home = () => {
 
     const [allPlants, setAllPlants] = useState([]);
-    const [searchedName, setSearchedName] = useState("");
-    const [plantsByName, setPlantsByName] = useState([]);
+    const [selectedName, setSelectedName] = useState("");
     const [selectedWatering, setSelectedWatering] = useState("");
-    const [plantsByWatering, setPlantsByWatering] = useState([]);
     const [selectedSunlight, setSelectedSunlight] = useState("");
-    const [plantsBySunlight, setPlantsBySunlight] = useState([]);
+    const [searchedPlants, setSearchedPlants] = useState([]);
     const user = useSelector(usersData)
     const token = user?.credentials?.token
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-
     const fetchPlants = () => {
-        plantsByName.length = 0
-        plantsBySunlight.length = 0
-        plantsByWatering.length = 0
+        searchedPlants.length = 0;
         getAllPlants()
-            .then((res) => {
-                setAllPlants(res.data);
-            })
+            .then((res) => setAllPlants(res.data))
             .catch((error) => console.log(error));
     };
 
     useEffect(() => {
-        if (allPlants.length === 0) {
-            fetchPlants();
-        }
+        fetchPlants();
     }, []);
 
     useEffect(() => {
-        plantsBySunlight.length = 0
-        plantsByWatering.length = 0
         const bring = setTimeout(() => {
-            getPlantByName(searchedName)
-                .then((res) => setPlantsByName(res.data))
+            getPlantByName(selectedName)
+                .then((res) => setSearchedPlants(res.data))
                 .catch((error) => console.log(error))
         }, 500)
 
         return () => clearTimeout(bring);
-    }, [searchedName]);
-
+    }, [selectedName]);
 
     const handleWatering = (e) => {
         setSelectedWatering(e.target.value);
     };
 
     useEffect(() => {
-        plantsByName.length = 0
-        plantsBySunlight.length = 0
         getPlantByWatering(selectedWatering)
-            .then((res) => setPlantsByWatering(res.data))
+            .then((res) => setSearchedPlants(res.data))
             .catch((error) => console.log(error))
     }, [selectedWatering]);
 
@@ -73,33 +59,46 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        plantsByName.length = 0
-        plantsByWatering.length = 0
         getPlantBySunlight(selectedSunlight)
-            .then((res) => setPlantsBySunlight(res.data))
+            .then((res) => setSearchedPlants(res.data))
             .catch((error) => console.log(error))
     }, [selectedSunlight]);
 
 
     const handleDetail = (plant) => {
-        if(token){
+        if (token) {
             const plant_id = plant.id;
 
             getMyPlantByPlantId(plant_id, token)
-            .then((res) => {
-                if (res.message !== 'Incorrect plant') {
-                    dispatch(savePlant({ data: res.data }));
-                } else {
-                    dispatch(savePlant({ data: plant }));
-                }
-                navigate('/detail');
-            })
-            .catch((error) => console.log(error))
+                .then((res) => {
+                    if (res.message !== 'Incorrect plant') {
+                        dispatch(savePlant({ data: res.data }));
+                    } else {
+                        dispatch(savePlant({ data: plant }));
+                    }
+                    navigate('/detail');
+                })
+                .catch((error) => console.log(error))
         } else {
             dispatch(savePlant({ data: plant }));
             navigate('/detail');
         }
     };
+
+    const wateringOptions = [
+        { label: "Frequent", value: "Frequent" },
+        { label: "Average", value: "Average" },
+        { label: "Low", value: "Low" },
+        { label: "Minimum", value: "Minimum" },
+    ];
+
+    const sunlightOptions = [
+        { label: "Full Sun", value: "Full Sun" },
+        { label: "Full Sun/Part Sun", value: "Full Sun/Part Sun" },
+        { label: "Full sun/Part Shade", value: "Full sun/Part Shade" },
+        { label: "Part Sun/Part Shade", value: "Part Sun/Part Shade" },
+        { label: "Part Shade/Full Shade", value: "Part Shade/Full Shade" },
+    ];
 
     return (
         <div className="homeDesign">
@@ -111,115 +110,53 @@ export const Home = () => {
                 <InputText
                     name={"name"}
                     placeholder={"Enter plant name"}
-                    state={setSearchedName}
+                    state={setSelectedName}
                     errorState={() => { }}
-                >
-                </InputText>
+                />
             </div>
-            <div>
-                <Form className="mb-3 plantsMenu">
-                    <div className="eachMenu">
-                        WATERING
-                        <Form.Check
-                            label="Frequent"
-                            value="Frequent"
-                            name="options"
-                            type="radio"
-                            checked={selectedWatering === 'Frequent'}
-                            onChange={handleWatering}
-                        />
-                        <Form.Check
-                            label="Average"
-                            value="Average"
-                            name="options"
-                            type="radio"
-                            checked={selectedWatering === 'Average'}
-                            onChange={handleWatering}
-                        />
-                        <Form.Check
-                            label="Low"
-                            value="Low"
-                            name="options"
-                            type="radio"
-                            checked={selectedWatering === 'Low'}
-                            onChange={handleWatering}
-                        />
-                        <Form.Check
-                            label="Minimum"
-                            value="Minimum"
-                            name="options"
-                            type="radio"
-                            checked={selectedWatering === 'Minimum'}
-                            onChange={handleWatering}
-                        />
+            <div className="d-md-flex mt-2 mt-md-5">
+                <div>
+                    <Form className="plantsMenu">
+                        <div className="eachMenu">
+                            WATERING
+                            {wateringOptions.map((option) => (
+                                <Form.Check
+                                    key={option.value}
+                                    label={option.label}
+                                    value={option.value}
+                                    name="options"
+                                    type="radio"
+                                    checked={selectedWatering === option.value}
+                                    onChange={handleWatering}
+                                />
+                            ))}
+                        </div>
+                        <div className="eachMenu">
+                            SUNLIGHT
+                            {sunlightOptions.map((option) => (
+                                <Form.Check
+                                    key={option.value}
+                                    label={option.label}
+                                    value={option.value}
+                                    name="options"
+                                    type="radio"
+                                    checked={selectedSunlight === option.value}
+                                    onChange={handleSunlight}
+                                />
+                            ))}
+                        </div>
+                    </Form>
+                    <div className=" m-3 mx-md-5">
+                        <CustomButton
+                            name={"All plants"}
+                            onClick={() => fetchPlants()}
+                        ></CustomButton>
                     </div>
-                    <div className="eachMenu">
-                        SUNLIGHT
-                        <Form.Check
-                            label="Full Sun"
-                            value="Full Sun"
-                            name="options"
-                            type="radio"
-                            checked={selectedSunlight === 'Full Sun'}
-                            onChange={handleSunlight}
-                        />
-                        <Form.Check
-                            label="Full Sun/Part Sun"
-                            value="Full Sun/Part Sun"
-                            name="options"
-                            type="radio"
-                            checked={selectedSunlight === 'Full Sun/Part Sun'}
-                            onChange={handleSunlight}
-                        />
-                        <Form.Check
-                            label="Full sun/Part Shade"
-                            value="Full sun/Part Shade"
-                            name="options"
-                            type="radio"
-                            checked={selectedSunlight === 'Full sun/Part Shade'}
-                            onChange={handleSunlight}
-                        />
-                        <Form.Check
-                            label="Part Sun/Part Shade"
-                            value="Part Sun/Part Shade"
-                            name="options"
-                            type="radio"
-                            checked={selectedSunlight === 'Part Sun/Part Shade'}
-                            onChange={handleSunlight}
-                        />
-                        <Form.Check
-                            label="Part Shade/Full Shade"
-                            value="Part Shade/Full Shade"
-                            name="options"
-                            type="radio"
-                            checked={selectedSunlight === 'Part Shade/Full Shade'}
-                            onChange={handleSunlight}
-                        />
-                    </div>
-                </Form>
-                <CustomButton
-                    name={"All plants"}
-                    onClick={() => fetchPlants()}
-                ></CustomButton>
-            </div>
-            <div className="homeCards">
+                </div>
+                <div className="homeCards">
 
-                {plantsByName.length > 0
-                    ? (plantsByName.map((plant) => {
-                        return (
-                            <CustomCard
-                                key={plant.id}
-                                common_name={plant.common_name}
-                                scientific_name={plant.scientific_name}
-                                sunlight={plant.sunlight}
-                                watering={plant.watering}
-                                image={plant.image}
-                                onClick={() => handleDetail(plant)}
-                            ></CustomCard>
-                        )
-                    }))
-                    : (plantsByWatering.length > 0
-                        ? (plantsByWatering.map((plant) => {
+                    {searchedPlants.length > 0
+                        ? (searchedPlants.map((plant) => {
                             return (
                                 <CustomCard
                                     key={plant.id}
@@ -232,45 +169,26 @@ export const Home = () => {
                                 ></CustomCard>
                             )
                         }))
-                        : (
-                            plantsBySunlight.length > 0
-                                ? (
-                                    (plantsBySunlight.map((plant) => {
-                                        return (
-                                            <CustomCard
-                                                key={plant.id}
-                                                common_name={plant.common_name}
-                                                scientific_name={plant.scientific_name}
-                                                sunlight={plant.sunlight}
-                                                watering={plant.watering}
-                                                image={plant.image}
-                                                onClick={() => handleDetail(plant)}
-                                            ></CustomCard>
-                                        )
-                                    }))
+                        : (allPlants.length > 0
+                            ? (allPlants.map((plant) => {
+                                return (
+                                    <CustomCard
+                                        key={plant.id}
+                                        common_name={plant.common_name}
+                                        scientific_name={plant.scientific_name}
+                                        sunlight={plant.sunlight}
+                                        watering={plant.watering}
+                                        image={plant.image}
+                                        onClick={() => handleDetail(plant)}
+                                    ></CustomCard>
                                 )
-                                : (
-                                    allPlants.length > 0
-                                        ? (
-                                            allPlants.map((plant) => {
-                                                return (
-                                                    <CustomCard
-                                                        key={plant.id}
-                                                        common_name={plant.common_name}
-                                                        scientific_name={plant.scientific_name}
-                                                        sunlight={plant.sunlight}
-                                                        watering={plant.watering}
-                                                        image={plant.image}
-                                                        onClick={() => handleDetail(plant)}
-                                                    ></CustomCard>
-                                                )
-                                            })
-                                        )
-                                        : (<div>Loading...</div>)
-                                ))
-                    )
-                }
-            </div>
-        </div >
+                            })
+                            )
+                            : (<div>Loading...</div>)
+                        )
+                    }
+                </div>
+            </div >
+        </div>
     )
 }
