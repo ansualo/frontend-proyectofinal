@@ -10,6 +10,7 @@ import { Profile } from "../Profile/Profile";
 import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { savePlant } from "../plantSlice";
 import { useNavigate } from "react-router";
+import { Weather } from "../../common/Weather/Weather";
 
 export const MyPlants = () => {
 
@@ -32,8 +33,9 @@ export const MyPlants = () => {
     const fetchPlantsNotWaterToday = () => {
         getPlantsNotWaterToday(token)
             .then((res) => {
-                const sortedPlants = res.data.sort((a, b) => { 
-                    return a.watering_date[0].days_to_water - b.watering_date[0].days_to_water })
+                const sortedPlants = res.data.sort((a, b) => {
+                    return a.watering_date[0].days_to_water - b.watering_date[0].days_to_water
+                })
                 setNotWaterToday(sortedPlants)
             })
             .catch((error) => console.log(error))
@@ -72,7 +74,7 @@ export const MyPlants = () => {
     }
 
     const handleDetail = (myplant) => {
-        dispatch(savePlant({data: myplant}))
+        dispatch(savePlant({ data: myplant }))
         navigate('/detail')
     }
 
@@ -80,8 +82,8 @@ export const MyPlants = () => {
         <div className="myPlantsDesign">
             <Container className="myPlantsContainer containerLeft">
                 <Row>
-                    <Col>
-                        <div className="weatherapp"></div>
+                    <Col className="weatherapp">
+                        <Weather />
                     </Col>
                 </Row>
                 <Row>
@@ -126,8 +128,8 @@ export const MyPlants = () => {
                             })
                             )
                             : (notWaterToday.length > 0
-                                ?(<div className="noPlants">Your plants are happy, they don't need to be watered today</div>)
-                                :(<div className="noPlants">You don't have any plants yet, go to Search to find them</div>)
+                                ? (<div className="noPlants">Your plants are happy, they don't need to be watered today</div>)
+                                : (<div className="noPlants">You don't have any plants yet, go to Search to find them</div>)
                             )
                         }
                     </Col>

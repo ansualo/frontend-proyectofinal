@@ -22,7 +22,7 @@
 .myPlantsRow{
     height: auto;
     width: 95vw;
-    background-color: #a9e296;
+    background-color: #bee199b5;
     border-radius: 1em;
     margin-bottom:2em;
     display: flex;
@@ -79,10 +79,8 @@
 
 
 .weatherapp{
-    width: 80vw;
-    height: 20vh;
-    background-color: blue;
-    margin:1em;
+    margin-top: 1em;
+    height: 25vh;
 }
 
 .profile{
@@ -128,9 +126,7 @@
         height: auto;
     }
     .weatherapp{
-        width: 30vw;
-        height: 20vh;
-        background-color: blue;
+        height: 40vh;
         margin:1em;
     }
     .profile{
