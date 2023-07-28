@@ -20,7 +20,7 @@
 }
 
 .deleted{
-    background-color: rgb(237, 145, 145);
+    border: 0.3em solid crimson
 }
 
 .userLabel{
@@ -38,4 +38,32 @@
     text-align: start;
     padding-left: 1em;
     border-radius: 0.5em;
+}
+
+.settingsButton{
+    border-radius: 0.5em;
+    padding: 0.2em;
+    background-color:#3d4676;
+    font-size: 1.2em;
+    text-align: center;
+    color:white;
+    cursor: pointer;
+}
+    
+.settingsButton:hover {
+    background-color: #838bb7;
+}
+
+.redButton{
+    border-radius: 0.5em;
+    padding: 0.1em;
+    background-color:darkred;
+    font-size: 1.2em;
+    text-align: center;
+    color:white;
+    cursor: pointer;
+}
+
+.redButton:hover{
+    background-color:crimson;
 }

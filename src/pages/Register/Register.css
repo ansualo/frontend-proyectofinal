@@ -42,5 +42,6 @@
         margin-top: 1em;
         background-repeat: no-repeat;
         background-position: contain;
+        border-top-right-radius: 2em;
     }
 }

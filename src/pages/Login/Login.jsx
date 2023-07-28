@@ -20,7 +20,7 @@ export const Login = () => {
         loginUser(userInfo)
             .then((res) => {
                 dispatch(loginReducer(res))
-                if(res.data.role_id === 1){
+                if (res.data.role_id === 1) {
                     navigate('/admin')
                 } else {
                     navigate('/myplants')
@@ -28,7 +28,6 @@ export const Login = () => {
             })
             .catch((error) => console.log(error))
     }
-
 
     return (
         <div className="loginDesign">
@@ -68,6 +67,14 @@ export const Login = () => {
                             name={"Login"}
                             onClick={(e) => login(e)}
                         ></CustomButton>
+                    </Col>
+                </Row>
+            </Container>
+            <Container>
+                <Row >
+                    <Col className="loginRow flex-row">
+                        <div className="me-2 my-3"> You don't have an account yet? </div>
+                        <div className="text-primary my-3 signup" onClick={() => { navigate('/register') }}> Sign up </div>
                     </Col>
                 </Row>
             </Container>

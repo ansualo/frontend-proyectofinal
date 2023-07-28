@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './PlantsSettings.css'
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { createPlant, getAllPlants } from "../../services/apiCalls";
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,7 @@ export const PlantsSettings = () => {
         <div className="plantsSettingsDesign">
             <Container>
                 <Row className="plantsRow createPlant">
-                    <Col sm={10} md={8}>
+                    <Col sm={10} md={6}>
                         <h4 className="text-center">Create new plant</h4>
                         <InputText
                             label={"Common Name"}
@@ -74,8 +74,22 @@ export const PlantsSettings = () => {
                             errorState={() => { }}
                         />
                     </Col>
+                    <Col sm={10} md={6} className="d-flex justify-content-around">
+                        <InputText
+                            label={"Flowers"}
+                            name={"flowers"}
+                            state={setNewPlant}
+                            errorState={() => { }}
+                        />
+                        <InputText
+                            label={"Poisonous"}
+                            name={"poisonous_to_pets"}
+                            state={setNewPlant}
+                            errorState={() => { }}
+                        />
+                    </Col>
                     <Col xs={5} md={2} className="my-3">
-                        <CustomButton name="Confirm" onClick={() => handleCreate()}></CustomButton >
+                        <CustomButton className="settingsButton" name="Confirm" onClick={() => handleCreate()}></CustomButton >
                     </Col>
                 </Row>
             </Container>
@@ -88,8 +102,10 @@ export const PlantsSettings = () => {
                                     <th>Id</th>
                                     <th>Common Name</th>
                                     <th>Scientific Name</th>
-                                    <th>Sunlight</th>
-                                    <th>Watering</th>
+                                    <th className="desktop">Sunlight</th>
+                                    <th className="desktop">Watering</th>
+                                    <th className="desktop">Flowers</th>
+                                    <th className="desktop">Poisonous</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,8 +116,10 @@ export const PlantsSettings = () => {
                                                 <td>{plant.id}</td>
                                                 <td>{plant.common_name}</td>
                                                 <td>{plant.scientific_name}</td>
-                                                <td>{plant.sunlight}</td>
-                                                <td>{plant.watering}</td>
+                                                <td className="desktop">{plant.sunlight}</td>
+                                                <td className="desktop">{plant.watering}</td>
+                                                <td className="desktop">{plant.flowers ? "Yes" : "No"}</td>
+                                                <td className="desktop">{plant.poisonous_to_pets ? "Yes" : "No"}</td>
                                             </tr>
                                         )
                                     })

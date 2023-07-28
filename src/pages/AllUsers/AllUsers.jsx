@@ -61,7 +61,7 @@ export const AllUsers = () => {
                             ? (<>
                                 <Row className="d-flex justify-content-center justify-content-md-end mt-4 my-md-4">
                                     <Col xs={8} md={3}>
-                                        <CustomButton name="Back to users" onClick={() => setAreDeleted(false)}></CustomButton >
+                                        <CustomButton className="settingsButton" name="Back to users" onClick={() => {setAreDeleted(false); fetchAllUsers()}}></CustomButton >
                                     </Col>
                                 </Row>
                                 {deletedUsers.map((user) => {
@@ -116,7 +116,7 @@ export const AllUsers = () => {
                                             </Row>
                                             <Row className="d-flex justify-content-center justify-content-md-end mt-2 me-md-2">
                                                 <Col xs={5} md={2}>
-                                                    <CustomButton name="Restore" onClick={() => handleRestore(user.id)}></CustomButton >
+                                                    <CustomButton className="settingsButton" name="Restore" onClick={() => handleRestore(user.id)}></CustomButton >
                                                 </Col>
                                             </Row>
                                         </div>
@@ -126,10 +126,7 @@ export const AllUsers = () => {
                             : (<>
                                 <Row className="d-flex justify-content-center justify-content-md-end mt-4 my-md-4">
                                     <Col xs={8} md={3} className="mb-3">
-                                        <CustomButton name="Deleted users" onClick={() => setAreDeleted(true)}></CustomButton >
-                                    </Col>
-                                    <Col xs={8} md={3}>
-                                        <CustomButton name="Back to menu" onClick={() => navigate('/admin')}></CustomButton >
+                                        <CustomButton className="settingsButton" name="Deleted users" onClick={() => setAreDeleted(true)}></CustomButton >
                                     </Col>
                                 </Row>
                                 {usersInfo.map((user) => {
@@ -178,7 +175,7 @@ export const AllUsers = () => {
                                             </Row>
                                             <Row className="d-flex justify-content-center justify-content-md-end mt-2 me-md-2">
                                                 <Col xs={5} md={2}>
-                                                    <CustomButton name="Delete" onClick={() => handleDelete(user.id)}></CustomButton >
+                                                    <CustomButton className="redButton" name="Delete" onClick={() => handleDelete(user.id)}></CustomButton >
                                                 </Col>
                                             </Row>
                                         </div>

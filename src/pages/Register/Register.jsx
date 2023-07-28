@@ -103,9 +103,15 @@ export const Register = () => {
                 <Row className="my-4 my-md-5 registerRow">
                     <Col xs={8} md={8}>
                         <CustomButton
-                            name={"Register"}
+                            name={"Sign up"}
                             onClick={()=>register()}
                         ></CustomButton>
+                    </Col>
+                </Row>
+                <Row >
+                    <Col className="registerRow flex-row">
+                        <div className="me-2 mb-5"> Already have an account? </div>
+                        <div className="text-primary signup mb-5" onClick={() => { navigate('/login') }}> Log in </div>
                     </Col>
                 </Row>
             </Container>
