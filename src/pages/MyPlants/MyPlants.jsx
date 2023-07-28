@@ -125,7 +125,10 @@ export const MyPlants = () => {
                                 )
                             })
                             )
-                            : (<div className="happyPlants">Your plants are happy, they don't need to be watered today</div>)
+                            : (notWaterToday.length > 0
+                                ?(<div className="noPlants">Your plants are happy, they don't need to be watered today</div>)
+                                :(<div className="noPlants">You don't have any plants yet, go to Search to find them</div>)
+                            )
                         }
                     </Col>
                 </Row>

@@ -17,7 +17,7 @@ export const Register = () => {
         registerUser(userInfo)
         .then((res)=> {
             console.log(res.data),
-            navigate('/')
+            navigate('/myplants')
         })
         .catch((error)=> console.log(error))
     }

@@ -23,7 +23,7 @@
     height: auto;
     width: 95vw;
     background-color: #a9e296;
-    border-radius: 2em;
+    border-radius: 1em;
     margin-bottom:2em;
     display: flex;
     flex-direction: column;
@@ -36,14 +36,14 @@
     padding-top: 0.5em;
 }
 
-.happyPlants{
+.noPlants{
     text-align: center;
     margin: 1em;
     font-size: 1.2em;
 }
 
 .eachMyPlant{
-    height: 11vh;
+    height: auto;
     background-color: #edffe7;
     margin-top: 1em;
     margin-bottom: 1em;
