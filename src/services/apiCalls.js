@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const URL = "http://localhost:8000/api";
+// const URL = "http://localhost:8000/api";
+
+const URL = "https://backend-proyectofinal.vercel.app/api/api"
 
 export const registerUser = async (userInfo) => {
     let res = await axios.post(`${URL}/register`, userInfo)

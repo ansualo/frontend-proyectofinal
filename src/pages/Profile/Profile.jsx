@@ -7,7 +7,7 @@ import { CustomButton } from "../../common/CustomButton/CustomButton";
 import { InputText } from "../../common/InputText/InputText";
 import { deleteProfile, getProfile, updateProfile } from "../../services/apiCalls";
 import { useNavigate } from "react-router-dom";
-import { CustomModal } from "../../common/CustomModal/CUstomModal";
+import { CustomModal } from "../../common/CustomModal/CustomModal";
 
 export const Profile = () => {
 
