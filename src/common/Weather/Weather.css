@@ -62,12 +62,12 @@
 
 @media (min-width: 1025px) {
     .weatherContainer{
-        height: 40vh;
+        height: 35vh;
         width: 22vw;
         flex-direction: column;
     }
     .weatherCol{
-        height: 35vh;
+        height: 30vh;
         width: 10vw;
     }
     .city{

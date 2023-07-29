@@ -30,10 +30,10 @@
 }
 
 .rowTitle{
-    text-indent: 2em;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.8em;
     padding-top: 0.5em;
+    padding-bottom: 0.2em;
 }
 
 .noPlants{
@@ -45,8 +45,7 @@
 .eachMyPlant{
     height: auto;
     background-color: #edffe7;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     border-radius: 1em;
     display:flex;
     align-items: center;
@@ -94,6 +93,7 @@
 @media (min-width: 1025px) {
 
     .myPlantsDesign{
+        width: 95vw;
         flex-direction: row;
     }
     .containerLeft{
@@ -110,8 +110,7 @@
         padding: 0.5em;
     }
     .eachMyPlant{
-        height: 8vh;
-        margin: 1em;
+        height: auto;
     }
     .eachRight{
         flex-direction: row;

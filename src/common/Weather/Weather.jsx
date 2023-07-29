@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Weather.css'
-import { Col, Container, Row } from 'react-bootstrap'
 import { getCity, getWeather } from '../../services/apiCalls'
 import pin from "../../assets/weatherIcons/pin.png"
 import { weatherIcon } from '../../services/weather'
@@ -16,6 +15,7 @@ export const Weather = () => {
     const data = useSelector(usersData)
     const city = data.data.city
 
+
     useEffect(() => {
         getCity(city)
             .then((res) => {
@@ -24,23 +24,31 @@ export const Weather = () => {
             .catch((error) => console.log(error))
     }, [])
 
+    const resultTemp = `${Math.trunc(temp.temp)}°C`
+    const resultDesc = description[0]?.description
+    const resultIcon = description[0]?.icon
+
+
     useEffect(() => {
         const latValue = coordinates.lat
         const lonValue = coordinates.lon
 
-        getWeather(latValue, lonValue)
-            .then((res) => {
-                setTemp(res.main)
-                setDescription(res.weather)
-                setIcon(weatherIcon(resultIcon));
-            })
-            .catch((error) => console.log(error))
+        const fetchWeatherData = async () => {
+            try {
+                await getWeather(latValue, lonValue)
+                    .then((res) => {
+                        setTemp(res.main);
+                        setDescription(res.weather);
+                        setIcon(weatherIcon(resultIcon));
+                    })
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchWeatherData();
+    }, [coordinates, resultIcon]);
 
-    }, [coordinates])
 
-    let resultTemp = `${Math.trunc(temp.temp)}°C`
-    let resultDesc = description[0]?.description
-    let resultIcon = description[0]?.icon
 
     return (
 
