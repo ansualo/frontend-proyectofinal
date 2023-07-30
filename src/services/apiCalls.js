@@ -258,7 +258,7 @@ export const createPlant = async (newPlant, token) => {
 
 export const getCity = async (city) => {
 
-    let res = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=59811b2c2443aacedf1ccc7bb01cf180`)
+    let res = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=59811b2c2443aacedf1ccc7bb01cf180`)
     return res.data
 }
 
