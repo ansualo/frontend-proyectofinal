@@ -17,7 +17,7 @@ export const Register = () => {
         registerUser(userInfo)
         .then((res)=> {
             console.log(res.data),
-            navigate('/myplants')
+            navigate('/login')
         })
         .catch((error)=> console.log(error))
     }
@@ -97,7 +97,9 @@ export const Register = () => {
                             state={setUserInfo}
                             errorState={setInputError}
                         ></InputText>
-                        <div className="errorInput">{inputError.passwordError}</div>
+                        <div className="errorInput">
+                            {inputError.passwordError}  
+                        </div>
                     </Col>
                 </Row>
                 <Row className="my-4 my-md-5 registerRow">

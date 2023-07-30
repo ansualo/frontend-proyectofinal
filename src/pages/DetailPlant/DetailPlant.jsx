@@ -146,14 +146,6 @@ export const DetailPlant = () => {
                                             errorState={() => { }}
                                         />
                                     </div>
-                                    <div className="d-md-flex ms-4 mt-2">
-                                        <h5>Last watering was on:</h5>
-                                        <h5 className="plantInfo">{specificInfo?.watering_date?.[0]?.watered_on}</h5>
-                                    </div>
-                                    <div className="d-md-flex ms-4 mt-2">
-                                        <h5>Next watering will be on :</h5>
-                                        <h5 className="plantInfo">{specificInfo?.watering_date?.[0]?.next_date_water}</h5>
-                                    </div>
                                 </Col>
                                 <Col xs={8} md={6} className="my-2">
                                     <CustomButton name="Confirm" onClick={() => { handleEdit(newData, token) }}></CustomButton >
